@@ -46,33 +46,33 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      title: "Project One",
-      category: "UI/UX Design",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop",
-      description: "A brief description of this project",
-      fullDescription: "This is a comprehensive UI/UX design project where I focused on creating intuitive user experiences. The project involved extensive user research, wireframing, prototyping, and user testing to ensure the final product met user needs effectively.",
-      technologies: ["Figma", "Adobe XD", "User Research", "Prototyping"],
-      link: "#"
+      title: "First disign project",
+      category: "School Project",
+      image: "https://i.imgur.com/iFoVtJw.jpeg",
+      description: "We made a interative museum instalation for a pop up museum in school.",
+      fullDescription: "For this project, we designed an interactive museum installation for a pop-up museum at our school. The installation aimed to engage visitors through immersive design elements and interactive features. We focused on creating a user-friendly experience that would captivate the audience and encourage exploration of the exhibits.",
+      technologies: ["Figma", "Illustaror", "Scrum", "Prototyping"],
+      link: "https://docs.google.com/document/d/1c9jAP73toWUDVamuIbWXa8u3nDEAXsidm-OFxHUFHH0/edit?usp=sharing"
     },
     {
       id: 2,
-      title: "Project Two",
-      category: "Branding",
-      image: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=600&fit=crop",
-      description: "A brief description of this project",
-      fullDescription: "A complete branding project that involved creating a brand identity from scratch. This included logo design, color palette selection, typography choices, and brand guidelines to ensure consistency across all touchpoints.",
-      technologies: ["Illustrator", "Photoshop", "Brand Strategy", "Visual Identity"],
-      link: "#"
+      title: "Jaro gevel techniek full website redesign",
+      category: "Web Development",
+      image: "https://i.imgur.com/kRAkYWE.png",
+      description: "Did a redesign and developed the Jaro Gevel Techniek website.",
+      fullDescription: "I made a full redesign of the Jaro Gevel Techniek website to improve user experience and modernize the look and feel. The project included a complete overhaul of the site's layout, color scheme, and functionality to better serve the client's needs and attract more visitors.",
+      technologies: ["wordpress", "ellementor", "Brand Strategy", "Visual Identity"],
+      link: "https://jarogeveltechniek.nl/"
     },
     {
       id: 3,
-      title: "Project Three",
-      category: "Web Design",
-      image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=600&fit=crop",
-      description: "A brief description of this project",
-      fullDescription: "A modern web design project featuring responsive layouts, smooth animations, and an emphasis on accessibility. The design system was built to be scalable and maintainable for future development.",
-      technologies: ["React", "Tailwind CSS", "Responsive Design", "Accessibility"],
-      link: "#"
+      title: "Game design",
+      category: "School Project",
+      image: "https://i.imgur.com/Jj7cQPa.jpeg",
+      description: "Made a card game and tested it with users.",
+  fullDescription: "i sat down with a team for the game design project and we cam up with a card drinking game concept. We focused on creating engaging gameplay mechanics and visually appealing card designs. After developing the initial prototype, we conducted user testing sessions to gather feedback and make necessary improvements to enhance the overall gaming experience.",
+      technologies: ["illustrator", "brainstorming", "user testing", "prototyping"],
+      link: "https://docs.google.com/document/d/11xZbyt4hDQ9EWp3V4skDMaGHaZdChOBW0PeOobxfTLQ/edit?usp=sharing"
     }
   ];
 
@@ -127,7 +127,7 @@ export default function Portfolio() {
             </div>
             <div className="flex justify-center md:justify-end">
               <div className="w-64 h-64 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-blue-100 to-violet-100 flex items-center justify-center p-8 shadow-2xl">
-                <img src="/src/assets/MR.MR.svg" alt="Logo" className="h-full w-full" />
+                <img src="https://i.imgur.com/MZcwfNt.png" alt="Logo" className="h-full w-full" />
               </div>
             </div>
           </div>
@@ -286,7 +286,7 @@ export default function Portfolio() {
           </p>
           <div className="flex justify-center gap-6">
             <a 
-              href="mailto:your.email@example.com"
+              href="mailto:max.hoogeweg@outlook.com"
               className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded-lg hover:from-blue-600 hover:to-violet-600 transition shadow-lg"
             >
               <Mail size={20} />
@@ -294,10 +294,10 @@ export default function Portfolio() {
             </a>
           </div>
           <div className="flex justify-center gap-6 mt-8">
-            <a href="#" className="text-slate-400 hover:text-white transition">
+            <a href="https://github.com/MHaox" className="text-slate-400 hover:text-white transition">
               <Github size={24} />
             </a>
-            <a href="#" className="text-slate-400 hover:text-white transition">
+            <a href="https://www.linkedin.com/in/max-robert-hoogeweg/" className="text-slate-400 hover:text-white transition">
               <Linkedin size={24} />
             </a>
           </div>
