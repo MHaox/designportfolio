@@ -1,10 +1,32 @@
-import React, { useState } from 'react';
-import { Menu, X, Github, Linkedin, Mail, Briefcase, GraduationCap, Code, Feather, Zap } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Github, Linkedin, Mail, Briefcase, GraduationCap, Code, Feather, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0); // New State
 
+  // New Helper Functions
+  const openProject = (project) => {
+    setSelectedProject(project);
+    setActiveImageIndex(0);
+  };
+
+  const nextImage = (e) => {
+    e.stopPropagation();
+    if (selectedProject) {
+      setActiveImageIndex((prev) => (prev + 1) % selectedProject.images.length);
+    }
+  };
+
+  const prevImage = (e) => {
+    e.stopPropagation();
+    if (selectedProject) {
+      setActiveImageIndex((prev) =>
+        prev === 0 ? selectedProject.images.length - 1 : prev - 1
+      );
+    }
+  };
   const skills = [
     {
       icon: Feather,
@@ -43,15 +65,15 @@ export default function Portfolio() {
     },
   ];
 
- const projects = [
+  const projects = [
     {
       id: 1,
       title: "First design project",
       category: "School Project",
       images: ["https://i.imgur.com/iFoVtJw.jpeg"],
-      description: "We made a interative museum instalation for a pop up museum in school.",
+      description: "We made a interative museum Installation for a pop up museum in school.",
       fullDescription: "For this project, we designed an interactive museum installation for a pop-up museum at our school. The installation aimed to engage visitors through immersive design elements and interactive features. We focused on creating a user-friendly experience that would captivate the audience and encourage exploration of the exhibits.",
-      technologies: ["Figma", "Illustaror", "Scrum", "Prototyping"],
+      technologies: ["Figma", "Illustrator", "Scrum", "Prototyping"],
       link: "https://docs.google.com/document/d/1c9jAP73toWUDVamuIbWXa8u3nDEAXsidm-OFxHUFHH0/edit?usp=sharing"
     },
     {
@@ -61,7 +83,7 @@ export default function Portfolio() {
       images: ["https://i.imgur.com/kRAkYWE.png"],
       description: "Did a redesign and developed the Jaro Gevel Techniek website.",
       fullDescription: "I made a full redesign of the Jaro Gevel Techniek website to improve user experience and modernize the look and feel. The project included a complete overhaul of the site's layout, color scheme, and functionality to better serve the client's needs and attract more visitors.",
-      technologies: ["wordpress", "ellementor", "Brand Strategy", "Visual Identity"],
+      technologies: ["wordpress", "Elementor", "Brand Strategy", "Visual Identity"],
       link: "https://jarogeveltechniek.nl/"
     },
     {
@@ -75,11 +97,11 @@ export default function Portfolio() {
       link: "https://docs.google.com/document/d/11xZbyt4hDQ9EWp3V4skDMaGHaZdChOBW0PeOobxfTLQ/edit?usp=sharing"
     },
     {
-     id: 4,
+      id: 4,
       title: "Learning Illustrator",
       category: "Personal learning",
       images: ["https://i.imgur.com/8abgjpQ.jpeg", "https://i.imgur.com/zsLluxV.jpeg", "https://i.imgur.com/VIGiifl.jpeg"],
-      description: "Wanted to learn illusterator so I made a learning plan and worked through it.",
+      description: "Wanted to learn Illustrator so I made a learning plan and worked through it.",
       fullDescription: "To enhance my design skills, I created a structured learning plan to improve in Adobe Illustrator. This involved following tutorials, practicing various design techniques, and completing projects to apply what I learned. The goal was to become proficient in using Illustrator for creating vector graphics and illustrations.",
       technologies: ["illustrator", "Learning", "Creative", "Self-improvement"],
       link: "https://docs.google.com/document/d/11xZbyt4hDQ9EWp3V4skDMaGHaZdChOBW0PeOobxfTLQ/edit?usp=sharing"
@@ -95,7 +117,7 @@ export default function Portfolio() {
             <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
               Max Robert Hoogeweg
             </div>
-            
+
             {/* Desktop Menu */}
             <div className="hidden md:flex gap-8 items-center">
               <a href="#work" className="text-slate-300 hover:text-white transition">Work</a>
@@ -104,7 +126,7 @@ export default function Portfolio() {
             </div>
 
             {/* Mobile Menu Button */}
-            <button 
+            <button
               className="md:hidden text-slate-300"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -150,14 +172,14 @@ export default function Portfolio() {
           <h2 className="text-3xl md:text-4xl font-bold mb-12">Selected Work</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
-              <div 
+              <div
                 key={project.id}
                 className="group cursor-pointer"
-                onClick={() => setSelectedProject(project)}
+                onClick={() => openProject(project)}
               >
                 <div className="overflow-hidden rounded-lg mb-4 border border-slate-800 hover:border-slate-700 transition-all duration-300">
-                  <img 
-                    src={project.image}
+                  <img
+                    src={project.images[0]}
                     alt={project.title}
                     className="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500"
                   />
@@ -171,41 +193,76 @@ export default function Portfolio() {
         </div>
 
         {/* Project Modal */}
+        {/* Project Modal with Gallery */}
         {selectedProject && (
-          <div 
+          <div
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedProject(null)}
           >
-            <div 
+            <div
               className="bg-slate-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-slate-800 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative">
-                <img 
-                  src={selectedProject.image}
+              <div className="relative group">
+                {/* Gallery Image */}
+                <img
+                  src={selectedProject.images[activeImageIndex]}
                   alt={selectedProject.title}
-                  className="w-full h-64 md:h-96 object-cover"
+                  className="w-full h-64 md:h-96 object-contain bg-slate-950"
                 />
+
+                {/* Close Button */}
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 bg-slate-900/90 text-white rounded-full p-2 hover:bg-slate-800 transition border border-slate-700"
+                  className="absolute top-4 right-4 bg-slate-900/90 text-white rounded-full p-2 hover:bg-slate-800 transition border border-slate-700 z-10"
                 >
                   <X size={24} />
                 </button>
+
+                {/* Gallery Navigation - Only show if >1 image */}
+                {selectedProject.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full backdrop-blur-sm transition opacity-0 group-hover:opacity-100"
+                    >
+                      <ChevronLeft size={24} />
+                    </button>
+
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full backdrop-blur-sm transition opacity-0 group-hover:opacity-100"
+                    >
+                      <ChevronRight size={24} />
+                    </button>
+
+                    {/* Dots */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                      {selectedProject.images.map((_, idx) => (
+                        <div
+                          key={idx}
+                          className={`w-2 h-2 rounded-full transition-all ${idx === activeImageIndex ? 'bg-white w-4' : 'bg-white/50'
+                            }`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
-              
+
+              {/* Content */}
               <div className="p-8">
                 <div className="text-sm text-violet-400 mb-2">{selectedProject.category}</div>
                 <h3 className="text-3xl font-bold mb-4">{selectedProject.title}</h3>
                 <p className="text-slate-300 text-lg mb-6 leading-relaxed">
                   {selectedProject.fullDescription}
                 </p>
-                
+
                 <div className="mb-6">
                   <h4 className="text-xl font-semibold mb-3">Technologies Used</h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.technologies.map((tech, index) => (
-                      <span 
+                      <span
                         key={index}
                         className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-full text-slate-300 text-sm"
                       >
@@ -215,8 +272,10 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                <a 
+                <a
                   href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded-lg hover:from-blue-600 hover:to-violet-600 transition shadow-lg"
                 >
                   View Project
@@ -231,7 +290,7 @@ export default function Portfolio() {
       <section id="about" className="py-20 px-6 bg-slate-900/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">About</h2>
-          
+
           {/* Profile */}
           <div className="mb-12 bg-slate-900 p-6 rounded-lg border border-slate-800">
             <p className="text-lg text-slate-300 mb-4">
@@ -295,7 +354,7 @@ export default function Portfolio() {
             Have a project in mind? Let's talk about it.
           </p>
           <div className="flex justify-center gap-6">
-            <a 
+            <a
               href="mailto:max.hoogeweg@outlook.com"
               className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded-lg hover:from-blue-600 hover:to-violet-600 transition shadow-lg"
             >
