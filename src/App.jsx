@@ -43,12 +43,12 @@ export default function Portfolio() {
     },
   ];
 
-  const projects = [
+ const projects = [
     {
       id: 1,
       title: "First design project",
       category: "School Project",
-      image: "https://i.imgur.com/iFoVtJw.jpeg",
+      images: ["https://i.imgur.com/iFoVtJw.jpeg"],
       description: "We made a interative museum instalation for a pop up museum in school.",
       fullDescription: "For this project, we designed an interactive museum installation for a pop-up museum at our school. The installation aimed to engage visitors through immersive design elements and interactive features. We focused on creating a user-friendly experience that would captivate the audience and encourage exploration of the exhibits.",
       technologies: ["Figma", "Illustaror", "Scrum", "Prototyping"],
@@ -58,7 +58,7 @@ export default function Portfolio() {
       id: 2,
       title: "Jaro gevel techniek full website redesign",
       category: "Web Development",
-      image: "https://i.imgur.com/kRAkYWE.png",
+      images: ["https://i.imgur.com/kRAkYWE.png"],
       description: "Did a redesign and developed the Jaro Gevel Techniek website.",
       fullDescription: "I made a full redesign of the Jaro Gevel Techniek website to improve user experience and modernize the look and feel. The project included a complete overhaul of the site's layout, color scheme, and functionality to better serve the client's needs and attract more visitors.",
       technologies: ["wordpress", "ellementor", "Brand Strategy", "Visual Identity"],
@@ -68,17 +68,17 @@ export default function Portfolio() {
       id: 3,
       title: "Game design",
       category: "School Project",
-      image: "https://i.imgur.com/Jj7cQPa.jpeg",
+      images: ["https://i.imgur.com/Jj7cQPa.jpeg"],
       description: "Made a card game and tested it with users.",
       fullDescription: "i sat down with a team for the game design project and we cam up with a card drinking game concept. We focused on creating engaging gameplay mechanics and visually appealing card designs. After developing the initial prototype, we conducted user testing sessions to gather feedback and make necessary improvements to enhance the overall gaming experience.",
       technologies: ["illustrator", "brainstorming", "user testing", "prototyping"],
       link: "https://docs.google.com/document/d/11xZbyt4hDQ9EWp3V4skDMaGHaZdChOBW0PeOobxfTLQ/edit?usp=sharing"
     },
     {
-     id: 3,
+     id: 4,
       title: "Learning Illustrator",
       category: "Personal learning",
-      image: "https://i.imgur.com/Jj7cQPa.jpeg",
+      images: ["https://i.imgur.com/8abgjpQ.jpeg", "https://i.imgur.com/zsLluxV.jpeg", "https://i.imgur.com/VIGiifl.jpeg"],
       description: "Wanted to learn illusterator so I made a learning plan and worked through it.",
       fullDescription: "To enhance my design skills, I created a structured learning plan to improve in Adobe Illustrator. This involved following tutorials, practicing various design techniques, and completing projects to apply what I learned. The goal was to become proficient in using Illustrator for creating vector graphics and illustrations.",
       technologies: ["illustrator", "Learning", "Creative", "Self-improvement"],
