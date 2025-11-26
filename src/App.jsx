@@ -46,7 +46,7 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      title: "First disign project",
+      title: "First design project",
       category: "School Project",
       image: "https://i.imgur.com/iFoVtJw.jpeg",
       description: "We made a interative museum instalation for a pop up museum in school.",
@@ -70,8 +70,18 @@ export default function Portfolio() {
       category: "School Project",
       image: "https://i.imgur.com/Jj7cQPa.jpeg",
       description: "Made a card game and tested it with users.",
-  fullDescription: "i sat down with a team for the game design project and we cam up with a card drinking game concept. We focused on creating engaging gameplay mechanics and visually appealing card designs. After developing the initial prototype, we conducted user testing sessions to gather feedback and make necessary improvements to enhance the overall gaming experience.",
+      fullDescription: "i sat down with a team for the game design project and we cam up with a card drinking game concept. We focused on creating engaging gameplay mechanics and visually appealing card designs. After developing the initial prototype, we conducted user testing sessions to gather feedback and make necessary improvements to enhance the overall gaming experience.",
       technologies: ["illustrator", "brainstorming", "user testing", "prototyping"],
+      link: "https://docs.google.com/document/d/11xZbyt4hDQ9EWp3V4skDMaGHaZdChOBW0PeOobxfTLQ/edit?usp=sharing"
+    },
+    {
+     id: 3,
+      title: "Learning Illustrator",
+      category: "Personal learning",
+      image: "https://i.imgur.com/Jj7cQPa.jpeg",
+      description: "Wanted to learn illusterator so I made a learning plan and worked through it.",
+      fullDescription: "To enhance my design skills, I created a structured learning plan to improve in Adobe Illustrator. This involved following tutorials, practicing various design techniques, and completing projects to apply what I learned. The goal was to become proficient in using Illustrator for creating vector graphics and illustrations.",
+      technologies: ["illustrator", "Learning", "Creative", "Self-improvement"],
       link: "https://docs.google.com/document/d/11xZbyt4hDQ9EWp3V4skDMaGHaZdChOBW0PeOobxfTLQ/edit?usp=sharing"
     }
   ];
