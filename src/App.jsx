@@ -5,7 +5,7 @@ export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false); // New state to pause loop on hover
+  const [isPaused, setIsPaused] = useState(false); 
   
   const projectContainerRef = useRef(null);
 
@@ -31,28 +31,41 @@ export default function Portfolio() {
     }
   };
 
-  // --- Infinite Carousel Logic (The "Big Loop") ---
+  // --- Infinite Carousel Logic ---
   useEffect(() => {
     const scrollContainer = projectContainerRef.current;
     if (!scrollContainer || isPaused) return;
 
-    const scrollSpeed = 1; // Pixels to move per tick
-    const refreshRate = 20; // Milliseconds (approx 50fps)
+    const scrollSpeed = 1; 
+    const refreshRate = 20; 
 
     const scrollInterval = setInterval(() => {
-      // 1. Move scroll position slightly
       scrollContainer.scrollLeft += scrollSpeed;
-
-      // 2. Check if we've scrolled past the first set of items (halfway point)
-      // Since we duplicated the items, scrollWidth is roughly 2x clientWidth
+      // Reset position seamlessly when we reach the halfway point (end of first set)
       if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
-        // 3. Teleport back to start instantly (seamless loop)
         scrollContainer.scrollLeft = 0;
       }
     }, refreshRate);
 
     return () => clearInterval(scrollInterval);
-  }, [isPaused]); // Re-run effect if pause state changes
+  }, [isPaused]);
+
+  // --- Helper to Manual Scroll exactly one Post ---
+  const scrollManual = (direction) => {
+    const container = projectContainerRef.current;
+    if (!container) return;
+
+    // Get the width of the first card + the 32px gap (gap-8)
+    const cardWidth = container.firstElementChild?.offsetWidth || 300;
+    const gap = 32;
+    const scrollAmount = cardWidth + gap;
+
+    if (direction === 'left') {
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const skills = [
     { icon: Feather, title: "UI/UX Design", description: "Proficient in Figma." },
@@ -157,26 +170,26 @@ export default function Portfolio() {
       </section>
 
       {/* Main Projects Carousel Section */}
-      <section 
-        id="work" 
-        className="py-20 px-6 overflow-hidden"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
+      <section id="work" className="py-20 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-end mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Selected Work</h2>
             
             {/* Manual Navigation Controls */}
+            {/* These now pause the carousel on hover and scroll exactly one card width */}
             <div className="flex gap-4">
               <button 
-                onClick={() => projectContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' })}
+                onClick={() => scrollManual('left')}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
                 className="p-2 rounded-full border border-slate-700 hover:bg-slate-800 text-slate-300 transition"
               >
                 <ChevronLeft size={24} />
               </button>
               <button 
-                onClick={() => projectContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' })}
+                onClick={() => scrollManual('right')}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
                 className="p-2 rounded-full border border-slate-700 hover:bg-slate-800 text-slate-300 transition"
               >
                 <ChevronRight size={24} />
@@ -193,9 +206,12 @@ export default function Portfolio() {
             {/* We map over infiniteProjects (doubled array) */}
             {infiniteProjects.map((project, index) => (
               <div 
-                key={`${project.id}-${index}`} // Unique key for duplicates
+                key={`${project.id}-${index}`} 
                 className="group cursor-pointer flex-none w-full md:w-[calc(50%-16px)] lg:w-[calc(33.333%-22px)]" 
                 onClick={() => openProject(project)}
+                // Pauses loop when hovering a specific post
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
               >
                 <div className="overflow-hidden rounded-lg mb-4 border border-slate-800 hover:border-slate-700 transition-all duration-300">
                   <img 
