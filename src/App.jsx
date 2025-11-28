@@ -8,7 +8,7 @@ export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Tracks mobile menu open/close
   const [selectedProject, setSelectedProject] = useState(null); // Tracks which project is open in the modal
   const [activeImageIndex, setActiveImageIndex] = useState(0); // Tracks which image is showing in the modal gallery
-  const [isPaused, setIsPaused] = useState(false); // Tracks if the main carousel should stop moving (on hover)
+  const [isPaused, setIsPaused] = useState(false); // Tracks if the main carousel should stop moving (on hover/touch)
   
   // ==========================================
   // 2. REFERENCES (DOM Access)
@@ -79,13 +79,15 @@ export default function Portfolio() {
       scrollContainer.scrollLeft += scrollSpeed;
       
       // Infinite Loop Teleport Logic
+      // When we scroll past the halfway point (end of the original list),
+      // we instantly "teleport" back to 0.
       if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
         scrollContainer.scrollLeft = 0;
       }
     }, refreshRate);
 
     return () => clearInterval(scrollInterval);
-  }, [isPaused]); // This dependency ensures the loop stops instantly when isPaused becomes true
+  }, [isPaused]); // Loop stops/starts instantly when isPaused changes
 
   // ==========================================
   // 5. STATIC DATA
@@ -189,7 +191,6 @@ export default function Portfolio() {
       <section className="pt-32 pb-20 px-6 relative">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
-            {/* Note: 'pb-3' added to fix text gradient clipping descenders (g, y, j) */}
             <h1 className="text-5xl md:text-7xl font-bold mb-6 pb-3 bg-gradient-to-r from-blue-400 via-violet-400 to-purple-400 bg-clip-text text-transparent leading-tight">
               Design Portfolio
             </h1>
@@ -212,20 +213,15 @@ export default function Portfolio() {
             <h2 className="text-3xl md:text-4xl font-bold">Selected Work</h2>
             
             {/* Manual Navigation Arrows */}
-            {/* Logic: Pauses auto-scroll on hover, resumes on leave */}
             <div className="flex gap-4">
               <button 
                 onClick={() => scrollManual('left')}
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
                 className="p-2 rounded-full border border-slate-700 hover:bg-slate-800 text-slate-300 transition"
               >
                 <ChevronLeft size={24} />
               </button>
               <button 
                 onClick={() => scrollManual('right')}
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
                 className="p-2 rounded-full border border-slate-700 hover:bg-slate-800 text-slate-300 transition"
               >
                 <ChevronRight size={24} />
@@ -236,6 +232,13 @@ export default function Portfolio() {
           {/* Scrollable Container (The moving track) */}
           <div 
             ref={projectContainerRef}
+            // EVENTS: Pause auto-scroll on Mouse Hover AND Touch (Mobile)
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
+            // FIX: Removed 'snap-x' and 'snap-mandatory'.
+            // This prevents the browser from forcing a jump when the auto-scroll stops between cards.
             className="flex gap-8 overflow-x-auto pb-8 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
@@ -245,9 +248,6 @@ export default function Portfolio() {
                 key={`${project.id}-${index}`} 
                 className="group cursor-pointer flex-none w-full md:w-[calc(50%-16px)] lg:w-[calc(33.333%-22px)]" 
                 onClick={() => openProject(project)}
-                // Pauses loop when hovering a specific post card
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
               >
                 <div className="overflow-hidden rounded-lg mb-4 border border-slate-800 hover:border-slate-700 transition-all duration-300">
                   <img 
