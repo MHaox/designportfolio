@@ -206,14 +206,19 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* --- WORK SECTION (Carousel) --- */}
+{/* --- WORK SECTION (Carousel) --- */}
       <section id="work" className="py-20 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-end mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Selected Work</h2>
             
             {/* Manual Navigation Arrows */}
-            <div className="flex gap-4">
+            {/* Visible only on Desktop (md:flex), hidden on Mobile */}
+            <div 
+              className="hidden md:flex gap-4"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
               <button 
                 onClick={() => scrollManual('left')}
                 className="p-2 rounded-full border border-slate-700 hover:bg-slate-800 text-slate-300 transition"
@@ -229,7 +234,7 @@ export default function Portfolio() {
             </div>
           </div>
           
-          {/* Scrollable Container (The moving track) */}
+          {/* Scrollable Container */}
           <div 
             ref={projectContainerRef}
             // EVENTS: Pause auto-scroll on Mouse Hover AND Touch (Mobile)
@@ -237,8 +242,8 @@ export default function Portfolio() {
             onMouseLeave={() => setIsPaused(false)}
             onTouchStart={() => setIsPaused(true)}
             onTouchEnd={() => setIsPaused(false)}
-            // FIX: Removed 'snap-x' and 'snap-mandatory'.
-            // This prevents the browser from forcing a jump when the auto-scroll stops between cards.
+            // FIX: Removed 'snap-x' and 'snap-mandatory' completely.
+            // Now, when you hover or let go of a drag, it stays exactly where it is.
             className="flex gap-8 overflow-x-auto pb-8 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
