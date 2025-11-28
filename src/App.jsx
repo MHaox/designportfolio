@@ -2,22 +2,34 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Github, Linkedin, Mail, Briefcase, GraduationCap, Code, Feather, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Portfolio() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false); // New state to pause loop on hover
+  // ==========================================
+  // 1. STATE MANAGEMENT
+  // ==========================================
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Tracks mobile menu open/close
+  const [selectedProject, setSelectedProject] = useState(null); // Tracks which project is open in the modal
+  const [activeImageIndex, setActiveImageIndex] = useState(0); // Tracks which image is showing in the modal gallery
+  const [isPaused, setIsPaused] = useState(false); // Tracks if the main carousel should stop moving (on hover)
   
-  const projectContainerRef = useRef(null);
+  // ==========================================
+  // 2. REFERENCES (DOM Access)
+  // ==========================================
+  const projectContainerRef = useRef(null); // Direct reference to the scrollable project container div
 
+  // ==========================================
+  // 3. HELPER FUNCTIONS (Interaction Logic)
+  // ==========================================
+
+  // Opens the modal and resets the gallery to the first image
   const openProject = (project) => {
     setSelectedProject(project);
     setActiveImageIndex(0);
   };
 
-  // --- Modal Gallery Logic ---
+  // --- Modal Gallery Navigation ---
   const nextImage = (e) => {
-    e.stopPropagation();
+    e.stopPropagation(); // Prevents the modal background click event from firing
     if (selectedProject) {
+      // Uses modulo (%) to loop back to 0 when reaching the end
       setActiveImageIndex((prev) => (prev + 1) % selectedProject.images.length);
     }
   };
@@ -25,35 +37,59 @@ export default function Portfolio() {
   const prevImage = (e) => {
     e.stopPropagation();
     if (selectedProject) {
+      // Logic to loop to the last image if clicking 'prev' on the first image
       setActiveImageIndex((prev) => 
         prev === 0 ? selectedProject.images.length - 1 : prev - 1
       );
     }
   };
 
-  // --- Infinite Carousel Logic (The "Big Loop") ---
+  // --- Manual Carousel Navigation (Left/Right Arrows) ---
+  const scrollManual = (direction) => {
+    const container = projectContainerRef.current;
+    if (!container) return;
+
+    // Calculate exact scroll distance: Card Width + Gap (32px)
+    const cardWidth = container.firstElementChild?.offsetWidth || 300;
+    const gap = 32;
+    const scrollAmount = cardWidth + gap;
+
+    if (direction === 'left') {
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  // ==========================================
+  // 4. EFFECTS (Animation/Intervals)
+  // ==========================================
+
+  // --- Infinite Auto-Scroll Logic ---
   useEffect(() => {
     const scrollContainer = projectContainerRef.current;
+    
+    // Stop animation if DOM isn't ready or if user is interacting (Hover or Touch)
     if (!scrollContainer || isPaused) return;
 
-    const scrollSpeed = 1; // Pixels to move per tick
-    const refreshRate = 20; // Milliseconds (approx 50fps)
+    const scrollSpeed = 1; 
+    const refreshRate = 20; 
 
     const scrollInterval = setInterval(() => {
-      // 1. Move scroll position slightly
       scrollContainer.scrollLeft += scrollSpeed;
-
-      // 2. Check if we've scrolled past the first set of items (halfway point)
-      // Since we duplicated the items, scrollWidth is roughly 2x clientWidth
+      
+      // Infinite Loop Teleport Logic
       if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
-        // 3. Teleport back to start instantly (seamless loop)
         scrollContainer.scrollLeft = 0;
       }
     }, refreshRate);
 
     return () => clearInterval(scrollInterval);
-  }, [isPaused]); // Re-run effect if pause state changes
+  }, [isPaused]); // This dependency ensures the loop stops instantly when isPaused becomes true
 
+  // ==========================================
+  // 5. STATIC DATA
+  // ==========================================
   const skills = [
     { icon: Feather, title: "UI/UX Design", description: "Proficient in Figma." },
     { icon: Briefcase, title: "Technical Support", description: "Experience at ASML (Centric)." },
@@ -110,25 +146,36 @@ export default function Portfolio() {
     }
   ];
 
-  // Create the loop by duplicating the array
+  // Infinite Loop Setup: Duplicating the array to create a buffer for seamless scrolling
   const infiniteProjects = [...projects, ...projects];
 
+  // ==========================================
+  // 6. RENDER (JSX)
+  // ==========================================
   return (
     <div className="min-h-screen bg-slate-950 text-white">
+      
+      {/* --- NAVIGATION BAR --- */}
       <nav className="fixed top-0 w-full bg-slate-950/90 backdrop-blur-md z-50 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
             Max Robert Hoogeweg
           </div>
+          
+          {/* Desktop Links */}
           <div className="hidden md:flex gap-8 items-center">
             <a href="#work" className="text-slate-300 hover:text-white transition">Work</a>
             <a href="#about" className="text-slate-300 hover:text-white transition">About</a>
             <a href="#contact" className="text-slate-300 hover:text-white transition">Contact</a>
           </div>
+
+          {/* Mobile Menu Toggle */}
           <button className="md:hidden text-slate-300" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
+
+        {/* Mobile Dropdown */}
         {isMenuOpen && (
           <div className="md:hidden pt-4 pb-2 px-6 flex flex-col gap-4 bg-slate-950 border-b border-slate-800">
             <a href="#work" className="text-slate-300 hover:text-white transition">Work</a>
@@ -138,10 +185,12 @@ export default function Portfolio() {
         )}
       </nav>
 
+      {/* --- HERO SECTION (Introduction) --- */}
       <section className="pt-32 pb-20 px-6 relative">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
+            {/* Note: 'pb-3' added to fix text gradient clipping descenders (g, y, j) */}
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 pb-3 bg-gradient-to-r from-blue-400 via-violet-400 to-purple-400 bg-clip-text text-transparent leading-tight">
               Design Portfolio
             </h1>
             <p className="text-xl md:text-2xl text-slate-400 max-w-2xl">
@@ -156,27 +205,27 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Main Projects Carousel Section */}
-      <section 
-        id="work" 
-        className="py-20 px-6 overflow-hidden"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
+      {/* --- WORK SECTION (Carousel) --- */}
+      <section id="work" className="py-20 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-end mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Selected Work</h2>
             
-            {/* Manual Navigation Controls */}
+            {/* Manual Navigation Arrows */}
+            {/* Logic: Pauses auto-scroll on hover, resumes on leave */}
             <div className="flex gap-4">
               <button 
-                onClick={() => projectContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' })}
+                onClick={() => scrollManual('left')}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
                 className="p-2 rounded-full border border-slate-700 hover:bg-slate-800 text-slate-300 transition"
               >
                 <ChevronLeft size={24} />
               </button>
               <button 
-                onClick={() => projectContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' })}
+                onClick={() => scrollManual('right')}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
                 className="p-2 rounded-full border border-slate-700 hover:bg-slate-800 text-slate-300 transition"
               >
                 <ChevronRight size={24} />
@@ -184,18 +233,21 @@ export default function Portfolio() {
             </div>
           </div>
           
-          {/* Horizontal Scroll Container */}
+          {/* Scrollable Container (The moving track) */}
           <div 
             ref={projectContainerRef}
             className="flex gap-8 overflow-x-auto pb-8 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {/* We map over infiniteProjects (doubled array) */}
+            {/* Mapping over duplicated array for infinite illusion */}
             {infiniteProjects.map((project, index) => (
               <div 
-                key={`${project.id}-${index}`} // Unique key for duplicates
+                key={`${project.id}-${index}`} 
                 className="group cursor-pointer flex-none w-full md:w-[calc(50%-16px)] lg:w-[calc(33.333%-22px)]" 
                 onClick={() => openProject(project)}
+                // Pauses loop when hovering a specific post card
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
               >
                 <div className="overflow-hidden rounded-lg mb-4 border border-slate-800 hover:border-slate-700 transition-all duration-300">
                   <img 
@@ -212,21 +264,25 @@ export default function Portfolio() {
           </div>
         </div>
 
-        {/* Modal (Hidden unless selected) */}
+        {/* --- PROJECT MODAL (Popup) --- */}
         {selectedProject && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setSelectedProject(null)}>
             <div className="bg-slate-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-slate-800 shadow-2xl" onClick={(e) => e.stopPropagation()}>
               <div className="relative group">
+                
+                {/* Modal Gallery Image */}
                 <img 
                   src={selectedProject.images[activeImageIndex]} 
                   alt={selectedProject.title} 
                   className="w-full h-64 md:h-96 object-contain bg-slate-950" 
                 />
                 
+                {/* Close Button */}
                 <button onClick={() => setSelectedProject(null)} className="absolute top-4 right-4 bg-slate-900/90 text-white rounded-full p-2 hover:bg-slate-800 transition border border-slate-700 z-10">
                   <X size={24} />
                 </button>
 
+                {/* Gallery Controls (Only show if >1 image) */}
                 {selectedProject.images.length > 1 && (
                   <>
                     <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full backdrop-blur-sm transition opacity-0 group-hover:opacity-100">
@@ -235,6 +291,7 @@ export default function Portfolio() {
                     <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full backdrop-blur-sm transition opacity-0 group-hover:opacity-100">
                       <ChevronRight size={24} />
                     </button>
+                    {/* Dots Indicator */}
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                       {selectedProject.images.map((_, idx) => (
                         <div key={idx} className={`w-2 h-2 rounded-full transition-all ${idx === activeImageIndex ? 'bg-white w-4' : 'bg-white/50'}`} />
@@ -244,6 +301,7 @@ export default function Portfolio() {
                 )}
               </div>
               
+              {/* Modal Text Content */}
               <div className="p-8">
                 <div className="text-sm text-violet-400 mb-2">{selectedProject.category}</div>
                 <h3 className="text-3xl font-bold mb-4">{selectedProject.title}</h3>
@@ -265,13 +323,18 @@ export default function Portfolio() {
         )}
       </section>
 
+      {/* --- ABOUT SECTION (Skills & Education) --- */}
       <section id="about" className="py-20 px-6 bg-slate-900/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">About</h2>
+          
+          {/* Bio Box */}
           <div className="mb-12 bg-slate-900 p-6 rounded-lg border border-slate-800">
             <p className="text-lg text-slate-300 mb-4">Motivated Student specializing in creative fields, with experience in high-impact development and corporate technical support.</p>
             <p className="text-lg text-slate-300">Currently available for freelance projects and full-time opportunities.</p>
           </div>
+          
+          {/* Skills Grid */}
           <div className="mb-12">
             <h3 className="text-2xl font-bold mb-6 flex items-center"><Briefcase className="w-6 h-6 mr-2 text-violet-400" /> Skills & Experience</h3>
             <div className="grid md:grid-cols-2 gap-6">
@@ -283,6 +346,8 @@ export default function Portfolio() {
               ))}
             </div>
           </div>
+          
+          {/* Education Grid */}
           <div>
             <h3 className="text-2xl font-bold mb-6 flex items-center"><GraduationCap className="w-6 h-6 mr-2 text-violet-400" /> Education</h3>
             <div className="bg-slate-900 rounded-lg border border-slate-800 divide-y divide-slate-800">
@@ -297,6 +362,7 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* --- CONTACT SECTION --- */}
       <section id="contact" className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">Let's Connect</h2>
@@ -313,6 +379,7 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* --- FOOTER --- */}
       <footer className="py-8 px-6 border-t border-slate-800">
         <div className="max-w-7xl mx-auto text-center text-slate-500"><p>© 2024 Max Robert Hoogeweg. All rights reserved.</p></div>
       </footer>
