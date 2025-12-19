@@ -1,3 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Apply these classes to the PostItBoard container */
+.font-hand {
+  font-family: 'Patrick Hand', cursive;
+}
+
+.bg-wall {
+  background-color: #f0f0f0; 
+  background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Custom Scrollbar for the messy feel */
+.font-hand ::-webkit-scrollbar {
+  width: 12px;
+}
+.font-hand ::-webkit-scrollbar-track {
+  background: transparent;
+}
+.font-hand ::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 20px;
+  border: 3px solid #f0f0f0;
+}
