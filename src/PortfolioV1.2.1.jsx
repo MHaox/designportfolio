@@ -164,7 +164,7 @@ function Receipt() {
                         <span>{c.sha.substring(0, 4)}</span>
                     </div>
                     <div className="text-[10px] opacity-60 text-right">
-                        {new Date(c.commit.author.date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                        {new Date(c.commit.author.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                     </div>
                 </div>
             ))
