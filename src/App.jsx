@@ -1,9 +1,9 @@
 // src/App.jsx
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import PostItBoard from './PortfolioV1.2.1';
-import OldPortfolio from './PortfolioV1.1.30';
-import Receipts from './PressureCookerV1.1.01';
+import PostItBoard from './PortfolioV1.2';
+import OldPortfolio from './PortfolioV1.1';
+import Receipts from './PressureCookerV1';
 
 
   export default function App() {
