@@ -339,6 +339,18 @@ export default function PostItBoard() {
       link: "https://docs.google.com/document/d/11xZbyt4hDQ9EWp3V4skDMaGHaZdChOBW0PeOobxfTLQ/edit?usp=sharing",
       color: "bg-green-100", // Green (Personal)
       tapeColor: "bg-green-400/50"
+    },
+    {
+      id: 5,
+      title: "Pressure Cooker Challenge",
+      category: "School Project",
+      images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJQeJyzgAzTEVqXiGe90RGBFhfp_4RcJJMQ&s"],
+      description: "Working under pressure to create a design for a client.",
+      fullDescription: "For the Pressure Cooker Challenge, I had to work under tight deadlines to create a design for a client. This project tested my ability to manage time effectively, prioritize tasks, and deliver high-quality work within a limited timeframe of 1 week. Despite the pressure, I successfully completed the project by staying focused and organized.",
+      technologies: ["React", "Illustrator", "Client", "Visual Identity"],
+      link: "/pressure-cooker",
+      color: "bg-yellow-100", // Yellow (School)
+      tapeColor: "bg-yellow-400/50"
     }
   ];
 
