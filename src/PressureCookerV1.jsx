@@ -24,31 +24,18 @@ function Redacted({ children, label = "CENSORED" }) {
 // --- Header Receipt (Real-Time Counter Version) ---
 function HeaderReceipt() {
   // Global Damage Counter
-  // Calculation: $1.5 Trillion Annual Damage / 31,536,000 Seconds = ~$47,564 per second
   const [globalDamage, setGlobalDamage] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Add ~$4,756 every 100ms to match the $47,564/sec rate
-      setGlobalDamage(prev => prev + 4756); 
+      setGlobalDamage(prev => prev + 4756);
     }, 100);
     return () => clearInterval(interval);
   }, []);
 
-  // Data based on "True Cost" studies (Greens/EFA & Calx Institute)
   const items = [
-    { 
-      name: "1x COTTON SHIRT", 
-      retail: 14.99, 
-      hidden: 21.50, 
-      detail: "2,700L WATER" 
-    },
-    { 
-      name: "1x POLYESTER DRESS", 
-      retail: 24.99, 
-      hidden: 34.20, 
-      detail: "200 YRS DECAY" 
-    }
+    { name: "1x COTTON SHIRT", retail: 14.99, hidden: 21.50, detail: "2,700L WATER" },
+    { name: "1x POLYESTER DRESS", retail: 24.99, hidden: 34.20, detail: "200 YRS DECAY" }
   ];
 
   const retailTotal = items.reduce((acc, item) => acc + item.retail, 0);
@@ -57,12 +44,11 @@ function HeaderReceipt() {
 
   return (
     <div className="w-80 bg-white text-black shadow-2xl transform rotate-1 font-mono text-xs">
-      
       {/* Receipt Header */}
       <div className="p-6 pb-2 text-center border-b-2 border-dashed border-black mx-4 mt-4">
         <h3 className="text-2xl font-black uppercase tracking-tighter">THE TRUE BILL</h3>
         <p className="opacity-60">FASHION INDUSTRY INC.</p>
-        <p>{new Date().toLocaleDateString()} // {new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>
+        <p>{new Date().toLocaleDateString()} // {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
       </div>
 
       {/* Column Headers */}
@@ -88,9 +74,7 @@ function HeaderReceipt() {
             <span className="text-[10px] text-zinc-500 uppercase tracking-wider">{item.detail}</span>
           </div>
         ))}
-
         <div className="border-t border-dashed border-zinc-300 my-2"></div>
-
         <div className="flex justify-between items-center text-zinc-500">
           <span>LABOR COST (EST)</span>
           <span>$0.03 / PIECE</span>
@@ -119,25 +103,22 @@ function HeaderReceipt() {
 
       {/* Live Global Ticker */}
       <div className="bg-black text-white p-4 text-center relative overflow-hidden group">
-         <p className="text-[9px] uppercase tracking-widest opacity-80 mb-1">
-            Global Industry Damage <br/>
-            <span className="text-[8px] opacity-60 normal-case">(Since you opened this page)</span>
-         </p>
-         <div className="font-mono text-xl font-bold text-red-500 animate-pulse">
-            ${globalDamage.toLocaleString()}
-         </div>
-         
-         {/* Source Link */}
-         <a 
-           href="https://globalfashionagenda.org/thought-leadership/pulse-of-the-fashion-industry/" 
-           target="_blank" 
-           rel="noreferrer"
-           className="block mt-2 text-[9px] text-zinc-500 underline hover:text-white transition-colors"
-         >
-           SOURCE: THE CALX INSTITUTE / GFA
-         </a>
+        <p className="text-[9px] uppercase tracking-widest opacity-80 mb-1">
+          Global Industry Damage <br />
+          <span className="text-[8px] opacity-60 normal-case">(Since you opened this page)</span>
+        </p>
+        <div className="font-mono text-xl font-bold text-red-500 animate-pulse">
+          ${globalDamage.toLocaleString()}
+        </div>
+        <a
+          href="https://globalfashionagenda.org/thought-leadership/pulse-of-the-fashion-industry/"
+          target="_blank"
+          rel="noreferrer"
+          className="block mt-2 text-[9px] text-zinc-500 underline hover:text-white transition-colors"
+        >
+          SOURCE: THE CALX INSTITUTE / GFA
+        </a>
       </div>
-
     </div>
   );
 }
@@ -152,12 +133,10 @@ function ArticleModal({ article, onClose }) {
         className="bg-zinc-100 text-black max-w-2xl w-full p-8 relative shadow-2xl transform rotate-1 font-mono"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
         <button onClick={onClose} className="absolute top-4 right-4 p-2 hover:bg-black/10 rounded-full transition-colors">
           <X size={24} />
         </button>
 
-        {/* Header */}
         <div className="border-b-4 border-black pb-4 mb-6">
           <div className="flex justify-between items-center mb-2">
             <span className="bg-red-600 text-white px-2 py-1 text-xs font-bold uppercase tracking-widest">Confidential File</span>
@@ -166,14 +145,12 @@ function ArticleModal({ article, onClose }) {
           <h2 className="text-3xl md:text-4xl font-black uppercase leading-tight">{article.title}</h2>
         </div>
 
-        {/* Content */}
         <div className="prose prose-sm max-w-none font-serif leading-relaxed text-zinc-800 border-b border-zinc-300 pb-6 mb-6">
           <p className="first-letter:text-5xl first-letter:font-black first-letter:float-left first-letter:mr-3 first-letter:mt-[-10px]">
             {article.content}
           </p>
         </div>
 
-        {/* Sources */}
         <div className="bg-zinc-200 p-4 border border-zinc-300">
           <h4 className="flex items-center gap-2 font-bold uppercase text-xs mb-3 text-zinc-600">
             <ExternalLink size={12} /> Verified Evidence (Click to View)
@@ -195,7 +172,6 @@ function ArticleModal({ article, onClose }) {
           </ul>
         </div>
 
-        {/* Stamp */}
         <div className="absolute top-1/2 right-10 transform -translate-y-1/2 -rotate-12 border-4 border-red-600/20 text-red-600/20 text-6xl font-black p-4 pointer-events-none select-none">
           EXPOSED
         </div>
@@ -213,13 +189,9 @@ function ExposedImage({ src, alt, caption, articleData, onClick }) {
     >
       <img src={src} alt={alt} className="w-full h-full object-cover aspect-[3/4]" />
       <div className="absolute inset-0 bg-black/50 group-hover:bg-transparent transition-colors duration-500"></div>
-
-      {/* The "Tag" */}
       <div className="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3 py-1 uppercase tracking-widest transform -rotate-2 group-hover:rotate-0 transition-transform shadow-lg group-hover:bg-black group-hover:border group-hover:border-red-600 group-hover:text-red-600">
         Click to Investigate
       </div>
-
-      {/* Caption revealing on hover */}
       <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500">
         <p className="font-mono text-xs text-red-400 mb-1 flex items-center gap-2">
           <FileText size={12} /> OPEN_CASE_FILE_{articleData.id}
@@ -237,7 +209,6 @@ function ExposedImage({ src, alt, caption, articleData, onClick }) {
 export default function PressureCookerV1() {
   const [activeArticle, setActiveArticle] = useState(null);
 
-  // Data for the articles (Now with REAL URLs)
   const articles = {
     transport: {
       id: "LOG_402",
@@ -264,13 +235,10 @@ export default function PressureCookerV1() {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-300 font-mono selection:bg-red-600 selection:text-white">
 
-      {/* Modal Overlay */}
       <ArticleModal article={activeArticle} onClose={() => setActiveArticle(null)} />
 
       {/* Navigation & Header */}
       <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-start pointer-events-none mix-blend-difference text-white">
-
-        {/* Logo Area */}
         <div className="pointer-events-auto mt-2">
           <div className="text-3xl font-black tracking-tighter leading-none">
             RECEIPTS<span className="text-red-600">.</span>
@@ -279,64 +247,61 @@ export default function PressureCookerV1() {
             Official EU Database
           </div>
         </div>
-
-        {/* Center Links (Desktop) */}
         <div className="hidden md:flex gap-8 text-xs font-bold tracking-widest pointer-events-auto mt-4 bg-black/50 backdrop-blur-sm px-6 py-2 rounded-full border border-white/10">
           <a href="#editorial" className="hover:text-red-500 transition-colors">EDITORIAL</a>
           <a href="#truth" className="hover:text-red-500 transition-colors">THE TRUTH</a>
           <a href="#passport" className="hover:text-red-500 transition-colors text-red-500">THE PASSPORT</a>
         </div>
-
-        {/* Spacer for Right Side (Previously HeaderReceipt) */}
         <div className="w-20 hidden md:block"></div>
-
       </nav>
 
-      {/* --- HERO SECTION --- */}
-      <section className="relative min-h-screen flex items-center px-6 md:px-20 pt-20 border-b border-zinc-800">
-        <div className="max-w-7xl w-full z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* --- HERO SECTION (UPDATED LAYOUT) --- */}
+      {/* Changed to flex-col with flex-grow logic. No absolute positioning for scroll indicator. */}
+      <section className="relative min-h-screen flex flex-col px-6 md:px-20 pt-24 border-b border-zinc-800">
+        
+        {/* Main Content (Expands to fill space) */}
+        <div className="flex-grow flex items-center w-full z-10">
+          <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left: Title & Text */}
+            <div className="space-y-8">
+              <p className="text-red-600 font-bold tracking-[0.3em] text-xs animate-pulse">
+                ● CLASSIFIED REPORT // EU-DPP-2030
+              </p>
 
-          {/* Left: Title & Text */}
-          <div className="space-y-8">
-            <p className="text-red-600 font-bold tracking-[0.3em] text-xs animate-pulse">
-              ● CLASSIFIED REPORT // EU-DPP-2030
-            </p>
+              <div className="relative">
+                <h1 className="text-6xl md:text-9xl font-serif text-white leading-[0.85]">
+                  The Fabric <br />
+                  <span className="italic font-light text-zinc-500">of</span> <br />
+                  Deception
+                </h1>
+                
+                {/* Receipt - Stacked on Mobile, Right side on Desktop */}
+                <div className="mt-8 lg:mt-0 lg:absolute lg:top-0 lg:-right-20 lg:transform lg:translate-x-full lg:rotate-6 z-20">
+                  <HeaderReceipt />
+                </div>
+              </div>
 
-            {/* Title with the Receipt Button Next to it */}
-            <div className="relative">
-              <h1 className="text-6xl md:text-9xl font-serif text-white leading-[0.85]">
-                The Fabric <br />
-                <span className="italic font-light text-zinc-500">of</span> <br />
-                Deception
-              </h1>
-
-              {/* The Bill / Receipt - Absolute positioned for desktop, stacked for mobile */}
-              <div className="mt-8 lg:mt-0 lg:absolute lg:top-0 lg:-right-20 lg:transform lg:translate-x-full lg:rotate-6 z-20">
-                <HeaderReceipt />
+              <div className="max-w-xl text-lg md:text-xl leading-relaxed text-zinc-400 space-y-6 pt-4">
+                <p>
+                  It looks like high fashion. It costs the Earth.
+                  The industry hides its crimes behind glossy magazines and
+                  runway shows.
+                </p>
+                <p>
+                  We are here to <Redacted label="REVEAL">expose the supply chain</Redacted>.
+                  Welcome to the Digital Product Passport era.
+                </p>
               </div>
             </div>
 
-            <div className="max-w-xl text-lg md:text-xl leading-relaxed text-zinc-400 space-y-6 pt-4">
-              <p>
-                It looks like high fashion. It costs the Earth.
-                The industry hides its crimes behind glossy magazines and
-                runway shows.
-              </p>
-              <p>
-                We are here to <Redacted label="REVEAL">expose the supply chain</Redacted>.
-                Welcome to the Digital Product Passport era.
-              </p>
-            </div>
-          </div>
-
-          {/* Right: (Optional) Hero Image or just spacing */}
-          <div className="hidden lg:block">
-            {/* You could put a hero image here, but for now we keep the focus on the typography and receipt */}
+            {/* Right: Spacer */}
+            <div className="hidden lg:block"></div>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-6 md:left-20 flex items-center gap-4">
+        {/* Scroll Indicator (Natural Flow - Always at bottom, never overlapping) */}
+        <div className="py-10 flex items-center gap-4 z-20">
           <div className="h-px w-24 bg-zinc-700"></div>
           <span className="text-xs uppercase tracking-widest text-zinc-500">Scroll to Decrypt</span>
         </div>
@@ -346,12 +311,9 @@ export default function PressureCookerV1() {
         <div className="absolute top-0 right-40 h-full w-px bg-zinc-900 hidden md:block"></div>
       </section>
 
-
       {/* --- EDITORIAL GRID --- */}
       <section id="editorial" className="px-6 md:px-20 py-24 border-b border-zinc-800">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-
-          {/* Left Text */}
           <div className="md:col-span-4 space-y-8 sticky top-32">
             <h2 className="text-4xl font-serif text-white italic">"Sustainability" <br /> is the new trend.</h2>
             <p className="text-sm leading-7">
@@ -364,7 +326,6 @@ export default function PressureCookerV1() {
             </div>
           </div>
 
-          {/* Right Images */}
           <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
             <ExposedImage
               src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop"
@@ -384,21 +345,16 @@ export default function PressureCookerV1() {
         </div>
       </section>
 
-
-      {/* --- THE TRUTH (Redacted Text Area) --- */}
+      {/* --- THE TRUTH --- */}
       <section id="truth" className="px-6 md:px-20 py-32 min-h-screen flex flex-col justify-center relative overflow-hidden">
-
-        {/* Background typographic noise */}
         <div className="absolute top-0 left-0 text-[20vw] font-black text-zinc-900 opacity-20 pointer-events-none select-none leading-none">
           LIES
         </div>
-
         <div className="max-w-4xl relative z-10">
           <div className="flex items-center gap-2 mb-8 text-red-600 font-bold tracking-widest text-xs uppercase">
             <AlertCircle size={16} />
             <span>Confidential Information</span>
           </div>
-
           <div className="text-2xl md:text-4xl leading-[1.6] md:leading-[1.5] font-serif text-zinc-400">
             <p>
               Most fashion brands cannot tell you where their
@@ -421,16 +377,15 @@ export default function PressureCookerV1() {
         </div>
       </section>
 
-      {/* --- NEW SECTION: THE PASSPORT SPECS --- */}
+      {/* --- THE PASSPORT SPECS --- */}
       <section id="passport" className="py-24 px-6 md:px-20 border-t border-zinc-800 bg-zinc-900/50">
         <div className="max-w-6xl mx-auto">
-
           <div className="flex items-end justify-between mb-12 border-b-2 border-zinc-700 pb-4">
             <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter">
               THE PASSPORT
             </h2>
             <span className="text-red-600 font-mono font-bold tracking-widest text-xs mb-2">
-                // TECHNICAL_SPECS
+              // TECHNICAL_SPECS
             </span>
           </div>
 
@@ -449,7 +404,6 @@ export default function PressureCookerV1() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono">
-              {/* Spec 1 */}
               <div className="border border-zinc-700 p-6 hover:bg-zinc-800 transition-colors group cursor-crosshair">
                 <ScanLine className="w-8 h-8 text-zinc-500 mb-4 group-hover:text-white transition-colors" />
                 <h4 className="text-white font-bold mb-2">TRACEABILITY</h4>
@@ -457,7 +411,6 @@ export default function PressureCookerV1() {
                   Complete map of the supply chain from raw material extraction to final retail.
                 </p>
               </div>
-              {/* Spec 2 */}
               <div className="border border-zinc-700 p-6 hover:bg-zinc-800 transition-colors group cursor-crosshair">
                 <Database className="w-8 h-8 text-zinc-500 mb-4 group-hover:text-white transition-colors" />
                 <h4 className="text-white font-bold mb-2">COMPOSITION</h4>
@@ -465,7 +418,6 @@ export default function PressureCookerV1() {
                   Exact percentage breakdown of fibers, chemicals, and dyes used.
                 </p>
               </div>
-              {/* Spec 3 */}
               <div className="border border-zinc-700 p-6 hover:bg-zinc-800 transition-colors group cursor-crosshair">
                 <Recycle className="w-8 h-8 text-zinc-500 mb-4 group-hover:text-white transition-colors" />
                 <h4 className="text-white font-bold mb-2">CIRCULARITY</h4>
@@ -473,7 +425,6 @@ export default function PressureCookerV1() {
                   Instructions for repair, disassembly, and recycling at end-of-life.
                 </p>
               </div>
-              {/* Spec 4 */}
               <div className="border border-zinc-700 p-6 hover:bg-zinc-800 transition-colors group cursor-crosshair">
                 <Globe className="w-8 h-8 text-zinc-500 mb-4 group-hover:text-white transition-colors" />
                 <h4 className="text-white font-bold mb-2">FOOTPRINT</h4>
@@ -486,7 +437,7 @@ export default function PressureCookerV1() {
         </div>
       </section>
 
-      {/* --- ACTION SECTION (UPDATED) --- */}
+      {/* --- ACTION SECTION --- */}
       <section id="action" className="py-24 border-t border-zinc-800 bg-black text-center">
         <div className="max-w-xl mx-auto px-6">
           <BarcodeIcon className="w-24 h-24 mx-auto text-white mb-6" />
