@@ -258,11 +258,11 @@ export default function PressureCookerV1() {
       {/* --- HERO SECTION (UPDATED LAYOUT) --- */}
       {/* Changed to flex-col with flex-grow logic. No absolute positioning for scroll indicator. */}
       <section className="relative min-h-screen flex flex-col px-6 md:px-20 pt-24 border-b border-zinc-800">
-        
+
         {/* Main Content (Expands to fill space) */}
         <div className="flex-grow flex items-center w-full z-10">
           <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
+
             {/* Left: Title & Text */}
             <div className="space-y-8">
               <p className="text-red-600 font-bold tracking-[0.3em] text-xs animate-pulse">
@@ -275,7 +275,7 @@ export default function PressureCookerV1() {
                   <span className="italic font-light text-zinc-500">of</span> <br />
                   Deception
                 </h1>
-                
+
                 {/* Receipt - Stacked on Mobile, Right side on Desktop */}
                 <div className="mt-8 lg:mt-0 lg:absolute lg:top-0 lg:-right-20 lg:transform lg:translate-x-full lg:rotate-6 z-20">
                   <HeaderReceipt />
@@ -453,6 +453,14 @@ export default function PressureCookerV1() {
             className="inline-block bg-red-600 text-white px-8 py-4 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
           >
             Read Official Documentation
+          </a>
+        </div>
+        <div className="mt-12">
+          <a
+            href="/"
+            className="text-xs uppercase tracking-[0.2em] text-zinc-600 hover:text-white transition-colors"
+          >
+            Made by Max Hoogeweg & EATHOL
           </a>
         </div>
       </section>

@@ -1,9 +1,9 @@
 // src/App.jsx
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import PostItBoard from './PortfolioV1.2';
-import OldPortfolio from './PortfolioV1.1';
-import Receipts from './PressureCookerV1';
+import PortfolioV1_2 from './pages/PortfolioV1.2';
+import PortfolioV1_1 from './pages/PortfolioV1.1';
+import Receipts from './pages/PressureCookerV1';
 
 
   export default function App() {
@@ -11,10 +11,10 @@ import Receipts from './PressureCookerV1';
     <BrowserRouter>
       <Routes>
         {/* The main path "/" loads your NEW Post-it design */}
-        <Route path="/" element={<PostItBoard />} />
+        <Route path="/" element={<PortfolioV1_2 />} />
         
         {/* The "/progress" path loads your OLD design */}
-        <Route path="/progress" element={<OldPortfolio />} />
+        <Route path="/V1.1" element={<PortfolioV1_1 />} />
 
         {/* The "/Fast Fasion" path loads the result of the pressure cooker assignmnet*/}
         <Route path="/pressure-cooker" element={<Receipts />} />
