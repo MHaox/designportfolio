@@ -1,6 +1,6 @@
 // src/PortfolioV1.2.1.jsx
 import React, { useState, useEffect } from 'react';
-import { X, Github, Linkedin, Mail, Briefcase, GraduationCap, Code, Feather, Zap, ExternalLink, Star, Smile, Rewind, ChevronLeft, ChevronRight, Coffee, CheckSquare, CornerDownLeft } from 'lucide-react';
+import { X, Github, Linkedin, Mail, Briefcase, GraduationCap, Code, Feather, Zap, ExternalLink, Star, Smile, Rewind, FastForward, ChevronLeft, ChevronRight, Coffee, CheckSquare, CornerDownLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // ==========================================
@@ -20,16 +20,15 @@ function DoodleLayer({ focusMode }) {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
       {doodles.map((d, i) => (
-        <div 
-          key={i} 
+        <div
+          key={i}
           // UPDATED: Transitions from Grey to Yellow in Focus Mode
-          className={`absolute transition-colors duration-700 ${
-            focusMode ? 'text-yellow-400 opacity-20' : 'text-slate-400/30'
-          }`}
-          style={{ 
-            left: d.x, 
-            top: d.y, 
-            transform: `rotate(${d.rot}) scale(${d.scale})` 
+          className={`absolute transition-colors duration-700 ${focusMode ? 'text-yellow-400 opacity-20' : 'text-slate-400/30'
+            }`}
+          style={{
+            left: d.x,
+            top: d.y,
+            transform: `rotate(${d.rot}) scale(${d.scale})`
           }}
         >
           <d.icon size={64} />
@@ -60,9 +59,9 @@ function BusinessCard() {
         <div className="font-serif text-3xl font-bold tracking-widest mb-1">M.R.H.</div>
         <div className="text-[10px] uppercase tracking-[0.3em] text-slate-400 mb-6">Design & Development</div>
         <div className="flex gap-6 text-slate-400">
-           <a href="mailto:max.hoogeweg@outlook.com" className="hover:text-white transition transform hover:scale-125"><Mail size={20}/></a>
-           <a href="https://www.linkedin.com/in/max-robert-hoogeweg/" className="hover:text-white transition transform hover:scale-125"><Linkedin size={20}/></a>
-           <a href="https://github.com/MHaox" className="hover:text-white transition transform hover:scale-125"><Github size={20}/></a>
+          <a href="mailto:max.hoogeweg@outlook.com" className="hover:text-white transition transform hover:scale-125"><Mail size={20} /></a>
+          <a href="https://www.linkedin.com/in/max-robert-hoogeweg/" className="hover:text-white transition transform hover:scale-125"><Linkedin size={20} /></a>
+          <a href="https://github.com/MHaox" className="hover:text-white transition transform hover:scale-125"><Github size={20} /></a>
         </div>
       </div>
     </div>
@@ -73,27 +72,27 @@ function BusinessCard() {
 function ServicesMenu() {
   return (
     <div className="bg-orange-50 p-6 shadow-md transform rotate-1 relative border-l-4 border-orange-200">
-       <h3 className="font-bold text-xl mb-4 text-orange-900 border-b-2 border-orange-100 pb-2 flex items-center gap-2">
-         <Coffee size={20} /> Service Menu
-       </h3>
-       <ul className="space-y-3 font-hand text-lg text-slate-700">
-         <li className="flex justify-between border-b border-orange-100 border-dashed pb-1">
-            <span>Frontend Dev</span>
-            <span className="font-bold text-orange-400">React/Vue</span>
-         </li>
-         <li className="flex justify-between border-b border-orange-100 border-dashed pb-1">
-            <span>UI/UX Design</span>
-            <span className="font-bold text-orange-400">Figma</span>
-         </li>
-         <li className="flex justify-between border-b border-orange-100 border-dashed pb-1">
-            <span>WordPress</span>
-            <span className="font-bold text-orange-400">Custom</span>
-         </li>
-         <li className="flex justify-between pt-1">
-            <span>Coffee Chat</span>
-            <span className="font-bold text-orange-400">Free</span>
-         </li>
-       </ul>
+      <h3 className="font-bold text-xl mb-4 text-orange-900 border-b-2 border-orange-100 pb-2 flex items-center gap-2">
+        <Coffee size={20} /> Service Menu
+      </h3>
+      <ul className="space-y-3 font-hand text-lg text-slate-700">
+        <li className="flex justify-between border-b border-orange-100 border-dashed pb-1">
+          <span>Frontend Dev</span>
+          <span className="font-bold text-orange-400">React/Vue</span>
+        </li>
+        <li className="flex justify-between border-b border-orange-100 border-dashed pb-1">
+          <span>UI/UX Design</span>
+          <span className="font-bold text-orange-400">Figma</span>
+        </li>
+        <li className="flex justify-between border-b border-orange-100 border-dashed pb-1">
+          <span>WordPress</span>
+          <span className="font-bold text-orange-400">Custom</span>
+        </li>
+        <li className="flex justify-between pt-1">
+          <span>Coffee Chat</span>
+          <span className="font-bold text-orange-400">Free</span>
+        </li>
+      </ul>
     </div>
   );
 }
@@ -102,19 +101,19 @@ function ServicesMenu() {
 function RecipeCard() {
   return (
     <div className="bg-white p-6 shadow-lg transform -rotate-1 relative max-w-sm mx-auto w-full">
-       <div className="absolute inset-0 bg-[linear-gradient(transparent_23px,#e5e7eb_24px)] bg-[size:100%_24px] pointer-events-none p-6"></div>
-       
-       <h3 className="font-bold text-xl mb-1 text-slate-800 relative z-10">Secret Sauce 🍝</h3>
-       <p className="text-xs text-slate-400 mb-4 relative z-10 font-mono">My preferred tech stack</p>
-       
-       <div className="relative z-10 grid grid-cols-2 gap-x-4 gap-y-2 font-hand text-lg text-slate-700">
-          <div className="flex items-center gap-2"><div className="w-2 h-2 bg-blue-400 rounded-full"></div> React 19</div>
-          <div className="flex items-center gap-2"><div className="w-2 h-2 bg-teal-400 rounded-full"></div> Tailwind</div>
-          <div className="flex items-center gap-2"><div className="w-2 h-2 bg-purple-400 rounded-full"></div> Vite</div>
-          <div className="flex items-center gap-2"><div className="w-2 h-2 bg-pink-400 rounded-full"></div> Laravel</div>
-          <div className="flex items-center gap-2"><div className="w-2 h-2 bg-orange-400 rounded-full"></div> Firebase</div>
-          <div className="flex items-center gap-2"><div className="w-2 h-2 bg-black rounded-full"></div> Figma</div>
-       </div>
+      <div className="absolute inset-0 bg-[linear-gradient(transparent_23px,#e5e7eb_24px)] bg-[size:100%_24px] pointer-events-none p-6"></div>
+
+      <h3 className="font-bold text-xl mb-1 text-slate-800 relative z-10">Secret Sauce 🍝</h3>
+      <p className="text-xs text-slate-400 mb-4 relative z-10 font-mono">My preferred tech stack</p>
+
+      <div className="relative z-10 grid grid-cols-2 gap-x-4 gap-y-2 font-hand text-lg text-slate-700">
+        <div className="flex items-center gap-2"><div className="w-2 h-2 bg-blue-400 rounded-full"></div> React 19</div>
+        <div className="flex items-center gap-2"><div className="w-2 h-2 bg-teal-400 rounded-full"></div> Tailwind</div>
+        <div className="flex items-center gap-2"><div className="w-2 h-2 bg-purple-400 rounded-full"></div> Vite</div>
+        <div className="flex items-center gap-2"><div className="w-2 h-2 bg-pink-400 rounded-full"></div> Laravel</div>
+        <div className="flex items-center gap-2"><div className="w-2 h-2 bg-orange-400 rounded-full"></div> Firebase</div>
+        <div className="flex items-center gap-2"><div className="w-2 h-2 bg-black rounded-full"></div> Figma</div>
+      </div>
     </div>
   );
 }
@@ -136,9 +135,9 @@ function Receipt() {
       })
       .catch(() => {
         setCommits([
-            { sha: '101', commit: { message: 'Fixing bugs', author: { date: new Date().toISOString() } } },
-            { sha: '102', commit: { message: 'Updating UI', author: { date: new Date().toISOString() } } },
-            { sha: '103', commit: { message: 'Coffee break', author: { date: new Date().toISOString() } } },
+          { sha: '101', commit: { message: 'Fixing bugs', author: { date: new Date().toISOString() } } },
+          { sha: '102', commit: { message: 'Updating UI', author: { date: new Date().toISOString() } } },
+          { sha: '103', commit: { message: 'Coffee break', author: { date: new Date().toISOString() } } },
         ]);
         setLoading(false);
       });
@@ -147,7 +146,7 @@ function Receipt() {
   return (
     <div className="bg-white w-full max-w-[280px] p-4 shadow-md transform rotate-2 font-mono text-xs text-slate-600 relative mx-auto my-8">
       <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 bg-slate-200/50 rotate-1"></div>
-      
+
       <div className="text-center border-b-2 border-dashed border-slate-300 pb-2 mb-2">
         <h3 className="font-bold text-lg uppercase">GIT_LOG</h3>
         <p>User: MHaox</p>
@@ -156,32 +155,32 @@ function Receipt() {
 
       <div className="space-y-2 mb-4">
         {loading ? (
-            <div className="text-center py-4">Loading Commits...</div>
+          <div className="text-center py-4">Loading Commits...</div>
         ) : (
-            commits.map((c) => (
-                <div key={c.sha} className="flex flex-col border-b border-slate-100 pb-1">
-                    <div className="flex justify-between font-bold">
-                        <span>{c.commit.message.slice(0, 15)}{c.commit.message.length > 15 ? '...' : ''}</span>
-                        <span>{c.sha.substring(0, 4)}</span>
-                    </div>
-                    <div className="text-[10px] opacity-60 text-right">
-                        {new Date(c.commit.author.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
-                    </div>
-                </div>
-            ))
+          commits.map((c) => (
+            <div key={c.sha} className="flex flex-col border-b border-slate-100 pb-1">
+              <div className="flex justify-between font-bold">
+                <span>{c.commit.message.slice(0, 15)}{c.commit.message.length > 15 ? '...' : ''}</span>
+                <span>{c.sha.substring(0, 4)}</span>
+              </div>
+              <div className="text-[10px] opacity-60 text-right">
+                {new Date(c.commit.author.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+              </div>
+            </div>
+          ))
         )}
       </div>
 
       <div className="border-t-2 border-dashed border-slate-300 pt-2 text-center font-bold text-lg">
         STATUS: PUSHED
       </div>
-      
-      <div className="absolute -bottom-2 left-0 w-full h-4 bg-wall bg-repeat-x" 
-           style={{ 
-             background: 'radial-gradient(circle, transparent 50%, #f0f0f0 50%)', 
-             backgroundSize: '10px 10px',
-             transform: 'rotate(180deg)'
-           }}>
+
+      <div className="absolute -bottom-2 left-0 w-full h-4 bg-wall bg-repeat-x"
+        style={{
+          background: 'radial-gradient(circle, transparent 50%, #f0f0f0 50%)',
+          backgroundSize: '10px 10px',
+          transform: 'rotate(180deg)'
+        }}>
       </div>
     </div>
   );
@@ -194,42 +193,42 @@ function QuestNote() {
   return (
     <div className="relative w-full h-64 perspective-1000 group">
       <div className={`relative w-full h-full transition-all duration-700 transform-style-3d ${flipped ? 'rotate-y-180' : ''}`}>
-        
+
         {/* FRONT SIDE (To-Do List) */}
         <div className="absolute inset-0 bg-yellow-100 p-6 shadow-lg transform -rotate-1 border-l-4 border-yellow-300 backface-hidden">
-             
-             {/* SIMILARITY: PINK TAPE! (Connects to Music Player) */}
-             <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-pink-300/60 rotate-1 opacity-90 shadow-sm z-10"></div>
 
-             {/* The "Peel" Corner Button */}
-             <button 
-                onClick={() => setFlipped(true)}
-                className="absolute top-0 right-0 w-12 h-12 flex items-center justify-center text-yellow-600/50 hover:text-yellow-800 transition hover:scale-110"
-                title="Peel me!"
-             >
-                <CornerDownLeft size={24} className="transform rotate-45" />
-             </button>
+          {/* SIMILARITY: PINK TAPE! (Connects to Music Player) */}
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-pink-300/60 rotate-1 opacity-90 shadow-sm z-10"></div>
 
-             <div className="absolute -top-4 right-8 text-yellow-600/20 transform rotate-12 pointer-events-none"><Star size={48} fill="currentColor" /></div>
-             <h3 className="font-bold text-xl mb-3 border-b border-yellow-200 pb-1 text-slate-700 mt-2">Daily Quests:</h3>
-             <ul className="space-y-3 font-hand text-lg text-slate-800">
-               <li className="flex items-center gap-2 decoration-green-600 line-through decoration-2 opacity-50"><CheckSquare size={18} className="text-green-600"/> Drink Coffee</li>
-               <li className="flex items-center gap-2 decoration-green-600 line-through decoration-2 opacity-50"><CheckSquare size={18} className="text-green-600"/> Center a Div</li>
-               <li className="flex items-center gap-2"><div className="w-4 h-4 border-2 border-slate-400 rounded-sm"></div> Fix Bugs</li>
-               <li className="flex items-center gap-2 font-bold text-red-500"><div className="w-4 h-4 border-2 border-red-500 rounded-sm"></div> Get Hired!</li>
-             </ul>
+          {/* The "Peel" Corner Button */}
+          <button
+            onClick={() => setFlipped(true)}
+            className="absolute top-0 right-0 w-12 h-12 flex items-center justify-center text-yellow-600/50 hover:text-yellow-800 transition hover:scale-110"
+            title="Peel me!"
+          >
+            <CornerDownLeft size={24} className="transform rotate-45" />
+          </button>
+
+          <div className="absolute -top-4 right-8 text-yellow-600/20 transform rotate-12 pointer-events-none"><Star size={48} fill="currentColor" /></div>
+          <h3 className="font-bold text-xl mb-3 border-b border-yellow-200 pb-1 text-slate-700 mt-2">Daily Quests:</h3>
+          <ul className="space-y-3 font-hand text-lg text-slate-800">
+            <li className="flex items-center gap-2 decoration-green-600 line-through decoration-2 opacity-50"><CheckSquare size={18} className="text-green-600" /> Drink Coffee</li>
+            <li className="flex items-center gap-2 decoration-green-600 line-through decoration-2 opacity-50"><CheckSquare size={18} className="text-green-600" /> Center a Div</li>
+            <li className="flex items-center gap-2"><div className="w-4 h-4 border-2 border-slate-400 rounded-sm"></div> Fix Bugs</li>
+            <li className="flex items-center gap-2 font-bold text-red-500"><div className="w-4 h-4 border-2 border-red-500 rounded-sm"></div> Get Hired!</li>
+          </ul>
         </div>
 
         {/* BACK SIDE (Easter Egg) */}
         <div className="absolute inset-0 bg-slate-800 p-6 shadow-lg transform -rotate-1 border-l-4 border-slate-600 backface-hidden rotate-y-180 flex flex-col items-center justify-center text-center text-green-400 font-mono">
-             <button onClick={() => setFlipped(false)} className="absolute top-2 right-2 text-slate-500 hover:text-white"><X size={20} /></button>
-             <h3 className="text-xl font-bold mb-2 blink">SECRET FOUND!</h3>
-             <p className="text-sm mb-4">You found the hidden developer layer.</p>
-             <div className="text-xs border border-green-900 bg-black/50 p-2 rounded w-full text-left font-mono">
-                {'>'} System.optimize()<br/>
-                {'>'} Coffee.refill()<br/>
-                {'>'} Status: READY
-             </div>
+          <button onClick={() => setFlipped(false)} className="absolute top-2 right-2 text-slate-500 hover:text-white"><X size={20} /></button>
+          <h3 className="text-xl font-bold mb-2 blink">SECRET FOUND!</h3>
+          <p className="text-sm mb-4">You found the hidden developer layer.</p>
+          <div className="text-xs border border-green-900 bg-black/50 p-2 rounded w-full text-left font-mono">
+            {'>'} System.optimize()<br />
+            {'>'} Coffee.refill()<br />
+            {'>'} Status: READY
+          </div>
         </div>
       </div>
     </div>
@@ -243,7 +242,7 @@ function QuestNote() {
 export default function PostItBoard() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  
+
   // FOCUS MODE STATE
   const [focusMode, setFocusMode] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
@@ -271,7 +270,7 @@ export default function PostItBoard() {
   const prevImage = (e) => {
     e.stopPropagation();
     if (selectedProject) {
-      setActiveImageIndex((prev) => 
+      setActiveImageIndex((prev) =>
         prev === 0 ? selectedProject.images.length - 1 : prev - 1
       );
     }
@@ -328,7 +327,7 @@ export default function PostItBoard() {
       color: "bg-yellow-100", // Yellow (School)
       tapeColor: "bg-yellow-400/50"
     },
-     {
+    {
       id: 4,
       title: "Learning Illustrator",
       category: "Personal Growth",
@@ -344,7 +343,7 @@ export default function PostItBoard() {
       id: 5,
       title: "Pressure Cooker Challenge",
       category: "School Project",
-      images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJQeJyzgAzTEVqXiGe90RGBFhfp_4RcJJMQ&s"],
+      images: ["https://i.imgur.com/8sUASmx.png"],
       description: "Working under pressure to create a design for a client.",
       fullDescription: "For the Pressure Cooker Challenge, I had to work under tight deadlines to create a design for a client. This project tested my ability to manage time effectively, prioritize tasks, and deliver high-quality work within a limited timeframe of 1 week. Despite the pressure, I successfully completed the project by staying focused and organized.",
       technologies: ["React", "Illustrator", "Client", "Visual Identity"],
@@ -356,7 +355,7 @@ export default function PostItBoard() {
 
   return (
     <div className={`min-h-screen pb-20 overflow-x-hidden selection:bg-yellow-300 selection:text-black font-hand relative transition-colors duration-700 ${focusMode ? 'bg-slate-900 text-slate-200' : 'bg-wall text-slate-800'}`}>
-      
+
       <style>{`
         .perspective-1000 { perspective: 1000px; }
         .transform-style-3d { transform-style: preserve-3d; }
@@ -380,10 +379,10 @@ export default function PostItBoard() {
 
       {/* MAIN CONTENT */}
       <main className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 relative z-10">
-        
+
         {/* LEFT COLUMN */}
         <div className="md:col-span-4 space-y-8 flex flex-col">
-          
+
           {/* Avatar */}
           <div className={`p-3 pb-12 shadow-2xl transform -rotate-2 hover:scale-105 transition duration-300 w-full max-w-xs mx-auto ${focusMode ? 'bg-slate-800' : 'bg-white'}`}>
             <div className="bg-slate-800 aspect-square mb-4 overflow-hidden grayscale hover:grayscale-0 transition duration-700">
@@ -411,15 +410,15 @@ export default function PostItBoard() {
 
           {/* Education */}
           <div className={`p-6 shadow-lg transform rotate-2 border-l-8 border-red-200 relative ${focusMode ? 'bg-slate-800 text-slate-300' : 'bg-white'}`}>
-             <h3 className="text-xl font-bold mb-4 underline decoration-wavy decoration-red-300">Education</h3>
-             <ul className="space-y-4">
-                {education.map((edu, idx) => (
-                  <li key={idx} className="flex flex-col">
-                    <span className="font-bold text-lg">{edu.institution}</span>
-                    <span className="text-slate-500 bg-yellow-100 inline-block self-start px-2 transform -rotate-1 text-slate-800">{edu.details}</span>
-                  </li>
-                ))}
-             </ul>
+            <h3 className="text-xl font-bold mb-4 underline decoration-wavy decoration-red-300">Education</h3>
+            <ul className="space-y-4">
+              {education.map((edu, idx) => (
+                <li key={idx} className="flex flex-col">
+                  <span className="font-bold text-lg">{edu.institution}</span>
+                  <span className="text-slate-500 bg-yellow-100 inline-block self-start px-2 transform -rotate-1 text-slate-800">{edu.details}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Quest Note with Pink Tape */}
@@ -428,85 +427,99 @@ export default function PostItBoard() {
 
         {/* RIGHT COLUMN */}
         <div className="md:col-span-8">
-           
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 items-start">
-              
-              <div className="space-y-8">
-                 <BusinessCard />
-                 
-                 {/* MUSIC PLAYER (With Focus Mode Interaction) */}
-                 <div 
-                    onMouseEnter={() => handleFocusMode(true)}
-                    onMouseLeave={() => handleFocusMode(false)}
-                    className="bg-pink-200 p-2 shadow-xl transform rotate-1 hover:rotate-0 transition duration-300 relative w-full rounded-lg cursor-cell"
-                 >
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-pink-300/50 opacity-80 rotate-1"></div>
-                    <div className="bg-pink-400/20 p-2 rounded-lg border-2 border-pink-300 border-dashed">
-                        <iframe 
-                            style={{ borderRadius: '12px' }} 
-                            src="https://open.spotify.com/embed/playlist/0b2z0L262075YoA63QF9aJ?utm_source=generator" 
-                            width="100%" 
-                            height="152" 
-                            frameBorder="0" 
-                            allowFullScreen="" 
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                            loading="lazy"
-                            title="Spotify"
-                        ></iframe>
-                    </div>
-                    <div className="text-center font-hand font-bold text-pink-800 mt-2 opacity-70 transform -rotate-1">
-                        ♫ Vibe Check (Hover Me) ♫
-                    </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 items-start">
+
+            <div className="space-y-8">
+              <BusinessCard />
+
+              {/* MUSIC PLAYER (With Focus Mode Interaction) */}
+              <div
+                onMouseEnter={() => handleFocusMode(true)}
+                onMouseLeave={() => handleFocusMode(false)}
+                className="bg-pink-200 p-2 shadow-xl transform rotate-1 hover:rotate-0 transition duration-300 relative w-full rounded-lg cursor-cell"
+              >
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-pink-300/50 opacity-80 rotate-1"></div>
+                <div className="bg-pink-400/20 p-2 rounded-lg border-2 border-pink-300 border-dashed">
+                  <iframe
+                    style={{ borderRadius: '12px' }}
+                    src="https://open.spotify.com/embed/playlist/0b2z0L262075YoA63QF9aJ?utm_source=generator"
+                    width="100%"
+                    height="152"
+                    frameBorder="0"
+                    allowFullScreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                    title="Spotify"
+                  ></iframe>
+                </div>
+                <div className="text-center font-hand font-bold text-pink-800 mt-2 opacity-70 transform -rotate-1">
+                  ♫ Vibe Check (Hover Me) ♫
                 </div>
               </div>
-              
-              <div className="space-y-8">
-                 <RecipeCard />
-                 <Link to="/progress" className="block transform rotate-1 hover:rotate-0 transition duration-300 hover:scale-105">
-                    <div className="bg-slate-800 text-white p-4 shadow-xl relative border-t-8 border-slate-700 text-center">
-                        <h3 className="font-bold mb-1 flex items-center justify-center gap-2">
-                          <Rewind className="text-yellow-400" size={20} /> Past Versions
-                        </h3>
-                        <p className="text-xs text-slate-400">See previous designs</p>
-                    </div>
-                 </Link>
-              </div>
-           </div>
+            </div>
 
-           <div className="mb-12">
-             <div className="flex items-end gap-4 mb-6">
-                <h2 className={`text-4xl font-bold transform -rotate-1 ${focusMode ? 'text-white' : 'text-slate-800'}`}>Recent Work</h2>
-                <div className="h-1 bg-slate-800 w-32 rounded-full mb-2 opacity-20"></div>
-             </div>
-             
-             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {projects.map((project, idx) => (
-                  <div 
-                    key={project.id}
-                    onClick={() => { setSelectedProject(project); setActiveImageIndex(0); }}
-                    className={`${project.color} p-4 pb-12 shadow-xl cursor-pointer transform ${getRotation(idx + 3)} hover:scale-105 hover:rotate-0 hover:z-10 transition duration-300 relative text-slate-800`}
-                  >
-                    <div className={`absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 ${project.tapeColor} rotate-1`}></div>
-                    <div className="bg-white p-2 shadow-sm mb-4 transform rotate-1">
-                      <img src={project.images[0]} alt={project.title} className="w-full h-48 object-cover filter sepia-[.2]" />
-                    </div>
-                    <h3 className="text-2xl font-bold leading-tight">{project.title}</h3>
-                    <p className="text-sm font-semibold opacity-70 mb-4 uppercase tracking-wider">{project.category}</p>
+            <div className="space-y-8">
+              <RecipeCard />
+              <Link
+                to="/V1.1"
+                className="block transform rotate-1 hover:rotate-0 transition duration-300 hover:-translate-x-4">
+                <div className="bg-slate-800 text-white p-4 shadow-xl relative border-t-8 border-slate-700 text-center">
+                  <h3 className="font-bold mb-1 flex items-center justify-center gap-2">
+                    <Rewind className="text-yellow-400" size={20} /> Past Versions
+                  </h3>
+                  <p className="text-xs text-slate-400">See previous designs</p>
+                </div>
+              </Link>
+
+              {/* Next Version - Ensure FastForward is imported */}
+              <Link
+                to="/V1.3"
+                className="block transform -rotate-1 hover:rotate-0 transition duration-300 hover:translate-x-4">
+                <div className="bg-slate-800 text-white p-4 shadow-xl relative border-t-8 border-cyan-700 text-center">
+                  <h3 className="font-bold mb-1 flex items-center justify-center gap-2">
+                    <FastForward className="text-cyan-400" size={20} /> Next Version
+                  </h3>
+                  <p className="text-xs text-slate-400">Preview upcoming features</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          <div className="mb-12">
+            <div className="flex items-end gap-4 mb-6">
+              <h2 className={`text-4xl font-bold transform -rotate-1 ${focusMode ? 'text-white' : 'text-slate-800'}`}>Recent Work</h2>
+              <div className="h-1 bg-slate-800 w-32 rounded-full mb-2 opacity-20"></div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {projects.map((project, idx) => (
+                <div
+                  key={project.id}
+                  onClick={() => { setSelectedProject(project); setActiveImageIndex(0); }}
+                  className={`${project.color} p-4 pb-12 shadow-xl cursor-pointer transform ${getRotation(idx + 3)} hover:scale-105 hover:rotate-0 hover:z-10 transition duration-300 relative text-slate-800`}
+                >
+                  <div className={`absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 ${project.tapeColor} rotate-1`}></div>
+                  <div className="bg-white p-2 shadow-sm mb-4 transform rotate-1">
+                    <img src={project.images[0]} alt={project.title} className="w-full h-48 object-cover filter sepia-[.2]" />
                   </div>
-                ))}
-             </div>
-           </div>
+                  <h3 className="text-2xl font-bold leading-tight">{project.title}</h3>
+                  <p className="text-sm font-semibold opacity-70 mb-4 uppercase tracking-wider">{project.category}</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-           <div className="flex justify-center lg:justify-end">
-               <Receipt />
-           </div>
+          <div className="flex justify-center lg:justify-end">
+            <Receipt />
+          </div>
         </div>
       </main>
 
       {/* TOAST NOTIFICATION */}
       {toastMessage && (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl z-50 animate-bounce font-bold border border-slate-700">
-           {toastMessage}
+          {toastMessage}
         </div>
       )}
 
@@ -515,38 +528,38 @@ export default function PostItBoard() {
         <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setSelectedProject(null)}>
           <div className={`${selectedProject.color} max-w-4xl w-full p-2 transform rotate-1 shadow-2xl text-slate-800`} onClick={(e) => e.stopPropagation()}>
             <div className={`${selectedProject.color} p-4 md:p-8 border-2 border-slate-500/20 border-dashed relative`}>
-                <button onClick={() => setSelectedProject(null)} className="absolute top-2 right-2 p-2 hover:bg-black/10 rounded-full transition"><X size={32} /></button>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="relative">
-                    <div className="bg-white p-2 shadow-sm transform rotate-1">
-                        <img src={selectedProject.images[activeImageIndex]} alt="Project" className="w-full h-64 object-cover" />
-                    </div>
-                    {selectedProject.images.length > 1 && (
-                      <div className="flex justify-center items-center gap-4 mt-4">
-                        <button onClick={prevImage} className="p-2 bg-white/50 hover:bg-white rounded-full transition shadow-sm"><ChevronLeft size={20} /></button>
-                        <div className="flex gap-2">
-                           {selectedProject.images.map((_, i) => (
-                             <div key={i} className={`w-2 h-2 rounded-full ${i === activeImageIndex ? 'bg-slate-800' : 'bg-slate-400/50'}`} />
-                           ))}
-                        </div>
-                        <button onClick={nextImage} className="p-2 bg-white/50 hover:bg-white rounded-full transition shadow-sm"><ChevronRight size={20} /></button>
-                      </div>
-                    )}
+              <button onClick={() => setSelectedProject(null)} className="absolute top-2 right-2 p-2 hover:bg-black/10 rounded-full transition"><X size={32} /></button>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="relative">
+                  <div className="bg-white p-2 shadow-sm transform rotate-1">
+                    <img src={selectedProject.images[activeImageIndex]} alt="Project" className="w-full h-64 object-cover" />
                   </div>
-                  <div>
-                    <h2 className="text-4xl font-bold mb-2">{selectedProject.title}</h2>
-                    <span className="inline-block bg-white/50 px-2 py-1 text-sm font-bold mb-4 rounded transform -rotate-2 border border-black/5">{selectedProject.category}</span>
-                    <h3 className="font-bold text-lg mb-1 opacity-80">The Brief</h3>
-                    <p className="text-lg mb-6 text-slate-800 leading-relaxed font-medium opacity-90">{selectedProject.fullDescription}</p>
-                    <h3 className="font-bold text-lg mb-1 opacity-80">Tech Used</h3>
-                    <div className="flex flex-wrap gap-2 mb-8">
-                        {selectedProject.technologies.map(tech => (
-                            <span key={tech} className="px-3 py-1 bg-white/60 border border-black/5 rounded-full text-sm font-bold">{tech}</span>
+                  {selectedProject.images.length > 1 && (
+                    <div className="flex justify-center items-center gap-4 mt-4">
+                      <button onClick={prevImage} className="p-2 bg-white/50 hover:bg-white rounded-full transition shadow-sm"><ChevronLeft size={20} /></button>
+                      <div className="flex gap-2">
+                        {selectedProject.images.map((_, i) => (
+                          <div key={i} className={`w-2 h-2 rounded-full ${i === activeImageIndex ? 'bg-slate-800' : 'bg-slate-400/50'}`} />
                         ))}
+                      </div>
+                      <button onClick={nextImage} className="p-2 bg-white/50 hover:bg-white rounded-full transition shadow-sm"><ChevronRight size={20} /></button>
                     </div>
-                    <a href={selectedProject.link} target="_blank" rel="noreferrer" className="block text-center bg-slate-900 text-white font-bold py-4 hover:bg-slate-800 transition shadow-lg transform hover:-translate-y-1 rounded">View Live Project</a>
-                  </div>
+                  )}
                 </div>
+                <div>
+                  <h2 className="text-4xl font-bold mb-2">{selectedProject.title}</h2>
+                  <span className="inline-block bg-white/50 px-2 py-1 text-sm font-bold mb-4 rounded transform -rotate-2 border border-black/5">{selectedProject.category}</span>
+                  <h3 className="font-bold text-lg mb-1 opacity-80">The Brief</h3>
+                  <p className="text-lg mb-6 text-slate-800 leading-relaxed font-medium opacity-90">{selectedProject.fullDescription}</p>
+                  <h3 className="font-bold text-lg mb-1 opacity-80">Tech Used</h3>
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {selectedProject.technologies.map(tech => (
+                      <span key={tech} className="px-3 py-1 bg-white/60 border border-black/5 rounded-full text-sm font-bold">{tech}</span>
+                    ))}
+                  </div>
+                  <a href={selectedProject.link} target="_blank" rel="noreferrer" className="block text-center bg-slate-900 text-white font-bold py-4 hover:bg-slate-800 transition shadow-lg transform hover:-translate-y-1 rounded">View Live Project</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
