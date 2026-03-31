@@ -5,6 +5,7 @@ import PortfolioV1_1 from './pages/PortfolioV1.1';
 import PortfolioV1_2 from './pages/PortfolioV1.2'; 
   //Sub-Project V1.2
   import Receipts from './pages/PressureCookerV1';
+  import ResourceHub from './pages/ResourceHub';
 import PortfolioV1_3 from './pages/PortfolioV1.3';
 
   export default function App() {
@@ -18,6 +19,7 @@ import PortfolioV1_3 from './pages/PortfolioV1.3';
         <Route path="/V1.3" element={<PortfolioV1_3 />} />
         
         <Route path="/pressure-cooker" element={<Receipts />} />
+        <Route path="/resource-hub" element={<ResourceHub />} />
       </Routes>
     </BrowserRouter>
   );
