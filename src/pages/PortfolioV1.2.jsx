@@ -331,7 +331,7 @@ export default function PostItBoard() {
       id: 4,
       title: "Learning Illustrator",
       category: "Personal Growth",
-      images: ["https://i.imgur.com/8abgjpQ.jpeg", "https://i.imgur.com/zsLluxV.jpeg", "https://i.imgur.com/VIGiifl.jpeg"],
+      images: ["https://i.imgur.com/VIGiifl.jpeg", "https://i.imgur.com/zsLluxV.jpeg", "https://i.imgur.com/8abgjpQ.jpeg"],
       description: "Self-taught vector graphics plan.",
       fullDescription: "To enhance my design skills, I created a structured learning plan to improve in Adobe Illustrator. This involved following tutorials, practicing various design techniques, and completing projects to apply what I learned. The goal was to become proficient in using Illustrator for creating vector graphics and illustrations.",
       technologies: ["Illustrator", "Learning", "Creative", "Self-improvement"],
@@ -350,7 +350,30 @@ export default function PostItBoard() {
       link: "/pressure-cooker",
       color: "bg-yellow-100", // Yellow (School)
       tapeColor: "bg-yellow-400/50"
-    }
+    },
+    {
+      id: 6, title: "AETHOL Brand & Platform",
+      category: "Web Development",
+      images: ["https://i.imgur.com/8abgjpQ.jpeg"], // Or use your hosted Hero screenshot
+      description: "A digital agency identity merging Greek mythology with high-end interaction design.",
+      fullDescription: "Aethol serves as my professional creative development studio. The project focuses on the concept of 'Directing the Digital Currents,' using the Greek god Aeolus as a metaphor for the intersection of Software Engineering and Interaction Design. I developed a custom SVG design system and a motion-heavy platform using Next.js and GSAP. The goal was to create a 'low-friction' user experience that feels like a natural breeze, utilizing scroll-triggered animations and glassmorphism to establish a premium, authoritative brand presence in the tech space.",
+      technologies: ["Next.js", "GSAP", "SVG Animation", "Vercel", "Tailwind CSS"],
+      link: "https://aethol.nl",
+      color: "bg-blue-100", // Blue (Professional)
+      tapeColor: "bg-blue-400/50"
+    },
+    {
+      id: 7, 
+      title: "CMD Resource Hub",
+      category: "School Project",
+      images: ["https://i.imgur.com/IwZNbYT.png"],
+      description: "A centralized, interactive toolkit for CMD students.",
+      fullDescription: "I transformed a static HTML resource list into a high-performance React application designed for CMD students. The project involved implementing advanced features such as a real-time fuzzy search engine, category filtering, and a 'Quick Search' platform bar. To enhance the user experience, I integrated local storage persistence for a 'Favorites' system and a custom dark mode toggle. I also implemented keyboard shortcuts (like '/' to search) to cater to power users, creating a seamless, accessible tool that helps students navigate school platforms and design tools efficiently.",
+      technologies: ["React", "Local Storage", "UX Design", "CSS Variables", "State Management"],
+      link: "https://designportfolio.vercel.app/resource-hub",
+      color: "bg-yellow-100", // Yellow (School)
+      tapeColor: "bg-yellow-400/50"
+    },
   ];
 
   return (
