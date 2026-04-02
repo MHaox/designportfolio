@@ -8,6 +8,7 @@ import PortfolioV1_2 from './pages/PortfolioV1.2';
 import Receipts from './pages/PressureCookerV1';
 import ResourceHub from './pages/ResourceHub';
 import PortfolioV1_3 from './pages/PortfolioV1.3';
+import CMDBusRide from './pages/Teststudy';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/V1.3" element={<PortfolioV1_3 />} />
           <Route path="/pressure-cooker" element={<Receipts />} />
           <Route path="/resource-hub" element={<ResourceHub />} />
+          <Route path="/teststudy" element={<CMDBusRide />} />
         </Routes>
       </BrowserRouter>
       
