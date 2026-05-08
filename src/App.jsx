@@ -9,6 +9,7 @@ import Receipts from './pages/PressureCookerV1';
 import ResourceHub from './pages/ResourceHub';
 import PortfolioV1_3 from './pages/PortfolioV1.3';
 import CMDBusRide from './pages/Teststudy';
+import Spectra from './pages/Spectra';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/pressure-cooker" element={<Receipts />} />
           <Route path="/resource-hub" element={<ResourceHub />} />
           <Route path="/teststudy" element={<CMDBusRide />} />
+          <Route path="/spectra" element={<Spectra />} />
         </Routes>
       </BrowserRouter>
       
