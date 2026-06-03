@@ -10,6 +10,7 @@ import ResourceHub from './pages/ResourceHub';
 import PortfolioV1_3 from './pages/PortfolioV1.3';
 import CMDBusRide from './pages/Teststudy';
 import Spectra from './pages/Spectra';
+import Sil from './pages/Sil';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/resource-hub" element={<ResourceHub />} />
           <Route path="/teststudy" element={<CMDBusRide />} />
           <Route path="/spectra" element={<Spectra />} />
+          <Route path="/sil" element={<Sil />} />
         </Routes>
       </BrowserRouter>
       
