@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import SpectraLogo from "../assets/Logo_White&Green_TransperentBG.png";
 
 const GSAP_CDN = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
@@ -13,11 +13,38 @@ function loadScript(src) {
   });
 }
 
+// TIMELINE DATA WITH SIL CONTEXT
+const timelineData = [
+  { 
+    num: "01", cat: "Weeks 1 & 2", title: "Brand Essence & Client Comm", bg: "DISCOVER", active: false,
+    desc: "We started by deeply analyzing the Social Innovation Lab's core identity. Through extensive downloading sessions, we established our 'Home for growth' slogan and locked in a unified color palette to bridge upcoming design styles." 
+  },
+  { 
+    num: "02", cat: "Weeks 3 & 4", title: "Initial Concepts & Testing", bg: "TEST", active: false,
+    desc: "We translated our ideas into wireframes and detailed logo iterations. User testing with lab insiders and strangers on the street revealed our sharp designs felt a bit too aggressive for the welcoming vibe the lab needed." 
+  },
+  { 
+    num: "03", cat: "Weeks 5 & 6", title: "Retro Pivot & MVP Build", bg: "ITERATE", active: false,
+    desc: "Acting on user feedback, we pivoted to a softer 70s/80s retro Memphis design. We researched a 'Container' sub-brand strategy to build trust and developed our first flat, static MVP website." 
+  },
+  { 
+    num: "04", cat: "Week 7", title: "MLP Fleshing & GSAP", bg: "CODE",  active: false,
+    desc: "We upgraded the static MVP into an engaging Minimum Lovable Product (MLP). We added quality-of-life features like a custom language translator and used GSAP to smoothly animate our rubber-hose mascot." 
+  },
+  { 
+    num: "05", cat: "Week 8", title: "Final Pitch & Handover", bg: "LAUNCH",  active: true,
+    desc: "The project culminated in a 26-slide presentation to the client and class. We explained the strategic reasoning behind our visual choices before officially handing over the brand assets to the Social Innovation Lab." 
+  },
+];
+
 export default function SpectraPage() {
   const cursorRef     = useRef(null);
   const cursorRingRef = useRef(null);
   const portTrackRef  = useRef(null);
   const initialized   = useRef(false);
+
+  // STATE FOR MODAL
+  const [selectedPhase, setSelectedPhase] = useState(null);
 
   const scrollToSection = (e, targetId) => {
     e.preventDefault();
@@ -130,7 +157,7 @@ export default function SpectraPage() {
         scrollTrigger: { scroller: rootEl, trigger: "#sp-experience", start: "top 70%", toggleActions: "play none none reverse" },
       });
 
-      // Horizontal portfolio scroll - FIXED JITTER
+      // Horizontal portfolio scroll
       const track = portTrackRef.current;
       if (track) {
         const getScrollAmount = () => -(track.scrollWidth - window.innerWidth + 80);
@@ -142,7 +169,7 @@ export default function SpectraPage() {
             scroller: rootEl, 
             trigger: "#sp-portfolio", 
             pin: true,
-            pinType: "transform", // THIS IS THE MAGIC FIX FOR JITTER IN CUSTOM SCROLLERS
+            pinType: "transform",
             start: "top top", 
             end: () => `+=${track.scrollWidth}`, 
             scrub: 1,
@@ -219,14 +246,33 @@ export default function SpectraPage() {
           position: relative; cursor: none; scroll-behavior: smooth;
         }
 
+        /* MODAL STYLES FIXED - Using hardcoded Hex colors to ensure visibility anywhere */
+        .sp-modal-overlay {
+          position: fixed; inset: 0; background: rgba(10,9,3,0.85); backdrop-filter: blur(8px);
+          z-index: 100000; display: flex; align-items: center; justify-content: center; padding: 24px;
+          font-family: 'Negan', sans-serif;
+        }
+        .sp-modal-content {
+          background: #12110D; border: 1px solid rgba(198,249,31,0.3); padding: 48px; max-width: 600px; 
+          width: 100%; position: relative; border-radius: 4px; border-top: 4px solid #C6F91F;
+        }
+        .sp-modal-close {
+          position: absolute; top: 24px; right: 24px; background: transparent; border: none; 
+          color: #F7F0F5; font-size: 24px; opacity: 0.5; transition: opacity 0.2s; cursor: none;
+        }
+        .sp-modal-close:hover { opacity: 1; color: #C6F91F; }
+        .sp-modal-cat { display: block; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #C6F91F; margin-bottom: 16px; font-weight: bold; }
+        .sp-modal-title { font-size: clamp(28px, 4vw, 40px); color: #F7F0F5; font-weight: 700; margin-bottom: 24px; line-height: 1.1; text-transform: uppercase; }
+        .sp-modal-desc { font-size: 16px; line-height: 1.8; color: #F7F0F5; opacity: 0.8; }
+
         .sp-cursor {
           position: fixed; width: 12px; height: 12px; border-radius: 50%;
-          background: #C6F91F; pointer-events: none; z-index: 99999;
+          background: #C6F91F; pointer-events: none; z-index: 999999;
           transform: translate(-50%, -50%); mix-blend-mode: difference;
         }
         .sp-cursor-ring {
           position: fixed; width: 40px; height: 40px; border-radius: 50%;
-          border: 1px solid #C6F91F; pointer-events: none; z-index: 99998;
+          border: 1px solid #C6F91F; pointer-events: none; z-index: 999998;
           transform: translate(-50%, -50%); mix-blend-mode: difference;
           transition: width .3s, height .3s, background .3s;
         }
@@ -250,7 +296,6 @@ export default function SpectraPage() {
           border-bottom: 1px solid rgba(198,249,31,0.15);
         }
         
-        /* Nav Logo Styling */
         .sp-nav-logo img { height: 32px; width: auto; opacity:0; object-fit: contain; }
         
         .sp-nav-links { display:flex; gap:clamp(16px,3vw,48px); list-style:none; opacity:0; }
@@ -262,7 +307,6 @@ export default function SpectraPage() {
         .sp-hero-content { position:relative; z-index:2; text-align:center; padding:0 24px; display: flex; flex-direction: column; align-items: center; }
         .sp-hero-eyebrow { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--sp-lime); margin-bottom:40px; opacity:0; display:block; }
         
-        /* Hero Logo Image Styling */
         .sp-hero-logo { width: clamp(280px, 50vw, 800px); max-width: 100%; will-change:transform; display: block; }
         
         .sp-hero-sub { font-size:clamp(18px,2.5vw,32px); color:var(--sp-pink); margin-top:32px; opacity:0; font-weight: 300; }
@@ -294,14 +338,13 @@ export default function SpectraPage() {
         .sp-port-card { width:clamp(280px,28vw,440px); flex-shrink:0; }
         
         .sp-port-card-inner { aspect-ratio:3/4; background:rgba(247,240,245,.04); border:1px solid rgba(247,240,245,.1); position:relative; overflow:hidden; display:flex; align-items:flex-end; padding:24px; transition:all .3s; cursor:none; }
-        .sp-port-card-inner:hover { border-color:var(--sp-lime); }
+        .sp-port-card-inner:hover { border-color:var(--sp-lime); background: rgba(198,249,31,0.02); }
         .sp-port-card-bg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:clamp(80px,12vw,180px); opacity:.04; color:var(--sp-pink); user-select:none; white-space:nowrap; transition:all .3s; font-weight: 800; }
         .sp-port-card-label { position:relative; z-index:1; }
         .sp-port-card-label span { display:block; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--sp-lime); margin-bottom:6px; }
         .sp-port-card-label h3 { font-size:clamp(20px,2vw,28px); color:var(--sp-pink); font-weight:500; transition:color .3s; }
         .sp-port-card-num { position:absolute; top:24px; right:24px; font-size:12px; letter-spacing:2px; color:var(--sp-pink); opacity:.3; transition:all .3s; font-weight: bold; }
 
-        /* ACTIVE PHASE STYLING */
         .sp-port-card-inner.sp-active-phase { border-color: var(--sp-lime); background: rgba(198,249,31,0.08); }
         .sp-port-card-inner.sp-active-phase .sp-port-card-bg { color: var(--sp-lime); opacity: 0.12; }
         .sp-port-card-inner.sp-active-phase h3 { color: var(--sp-lime); }
@@ -345,9 +388,20 @@ export default function SpectraPage() {
 
       <div className="sp-root" id="sp-root-scroll">
 
+        {/* MODAL IS NOW INSIDE ROOT SO FONTS APPLY PROPERLY */}
+        {selectedPhase && (
+          <div className="sp-modal-overlay" onClick={() => setSelectedPhase(null)}>
+            <div className="sp-modal-content" onClick={(e) => e.stopPropagation()}>
+              <button className="sp-modal-close" onClick={() => setSelectedPhase(null)}>✕</button>
+              <span className="sp-modal-cat">{selectedPhase.cat}</span>
+              <h3 className="sp-modal-title">{selectedPhase.title}</h3>
+              <p className="sp-modal-desc">{selectedPhase.desc}</p>
+            </div>
+          </div>
+        )}
+
         <nav id="sp-navbar">
           <div className="sp-nav-logo">
-            {/* Nav Image Logo */}
             <img src={SpectraLogo} alt="Spectra" className="sp-nav-logo-img" />
           </div>
           <ul className="sp-nav-links">
@@ -364,7 +418,6 @@ export default function SpectraPage() {
           <div className="sp-hero-bg-line" style={{ left: "80%" }} />
           <div className="sp-hero-content">
             <p className="sp-hero-eyebrow">School Project Team — Est. about a week ago</p>
-            {/* Hero Image Logo replaces H1 text */}
             <img src={SpectraLogo} alt="Spectra" className="sp-hero-logo" id="sp-hero-logo" />
             <p className="sp-hero-sub" id="sp-hero-sub">We exist at the edge of comfort zones.</p>
             <a href="#sp-portfolio" onClick={(e) => scrollToSection(e, "sp-portfolio")} className="sp-hero-cta" id="sp-hero-cta">Explore Our Journey</a>
@@ -400,18 +453,19 @@ export default function SpectraPage() {
           <div className="sp-port-header"><h2>Project <span>Journey</span></h2></div>
           <div className="sp-port-track-outer">
             <div className="sp-port-track" ref={portTrackRef}>
-              {[
-                { num: "01", cat: "Phase 1 (Current)", title: "Team & Client Comm", bg: "START", active: true },
-                { num: "02", cat: "Phase 2", title: "First Client Pitch",    bg: "PITCH", active: false },
-                { num: "03", cat: "Phase 3", title: "Design Prototyping",    bg: "FIGMA", active: false },
-                { num: "04", cat: "Phase 4", title: "GSAP Animation",        bg: "CODE",  active: false },
-                { num: "05", cat: "Phase 5", title: "Final Delivery",        bg: "DONE",  active: false },
-              ].map(({ num, cat, title, bg, active }) => (
-                <div className="sp-port-card" key={num}>
-                  <div className={`sp-port-card-inner ${active ? 'sp-active-phase' : ''}`}>
-                    <div className="sp-port-card-bg">{bg}</div>
-                    <span className="sp-port-card-num">{num}</span>
-                    <div className="sp-port-card-label"><span>{cat}</span><h3>{title}</h3></div>
+              {timelineData.map((phase) => (
+                <div 
+                  className="sp-port-card" 
+                  key={phase.num} 
+                  onClick={() => setSelectedPhase(phase)}
+                >
+                  <div className={`sp-port-card-inner ${phase.active ? 'sp-active-phase' : ''}`}>
+                    <div className="sp-port-card-bg">{phase.bg}</div>
+                    <span className="sp-port-card-num">{phase.num}</span>
+                    <div className="sp-port-card-label">
+                      <span>{phase.cat}</span>
+                      <h3>{phase.title}</h3>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -456,7 +510,6 @@ export default function SpectraPage() {
 
         <footer id="sp-footer" className="sp-footer">
           <div className="sp-footer-logo">
-            {/* Footer Image Logo */}
             <img src={SpectraLogo} alt="Spectra" />
           </div>
           <div className="sp-footer-cta">
