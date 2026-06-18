@@ -300,7 +300,7 @@ export default function PostItBoard() {
       fullDescription: "For this project, we designed an interactive museum installation for a pop-up museum at our school. The installation aimed to engage visitors through immersive design elements and interactive features. We focused on creating a user-friendly experience that would captivate the audience and encourage exploration of the exhibits.",
       technologies: ["Figma", "Illustrator", "Scrum", "Prototyping"],
       link: "https://docs.google.com/document/d/1c9jAP73toWUDVamuIbWXa8u3nDEAXsidm-OFxHUFHH0/edit?usp=sharing",
-      color: "bg-yellow-100", // Yellow (School)
+      color: "bg-yellow-100",
       tapeColor: "bg-yellow-400/50"
     },
     {
@@ -312,7 +312,7 @@ export default function PostItBoard() {
       fullDescription: "I made a full redesign of the Jaro Gevel Techniek website to improve user experience and modernize the look and feel. The project included a complete overhaul of the site's layout, color scheme, and functionality to better serve the client's needs and attract more visitors.",
       technologies: ["WordPress", "Elementor", "Brand Strategy", "Visual Identity"],
       link: "https://jarogeveltechniek.nl/",
-      color: "bg-blue-100", // Blue (Professional)
+      color: "bg-blue-100",
       tapeColor: "bg-blue-400/50"
     },
     {
@@ -324,7 +324,7 @@ export default function PostItBoard() {
       fullDescription: "I sat down with a team for the game design project and we came up with a card drinking game concept. We focused on creating engaging gameplay mechanics and visually appealing card designs. After developing the initial prototype, we conducted user testing sessions to gather feedback and make necessary improvements to enhance the overall gaming experience.",
       technologies: ["Illustrator", "Brainstorming", "User Testing", "Prototyping"],
       link: "https://docs.google.com/document/d/11xZbyt4hDQ9EWp3V4skDMaGHaZdChOBW0PeOobxfTLQ/edit?usp=sharing",
-      color: "bg-yellow-100", // Yellow (School)
+      color: "bg-yellow-100",
       tapeColor: "bg-yellow-400/50"
     },
     {
@@ -336,7 +336,7 @@ export default function PostItBoard() {
       fullDescription: "To enhance my design skills, I created a structured learning plan to improve in Adobe Illustrator. This involved following tutorials, practicing various design techniques, and completing projects to apply what I learned. The goal was to become proficient in using Illustrator for creating vector graphics and illustrations.",
       technologies: ["Illustrator", "Learning", "Creative", "Self-improvement"],
       link: "https://docs.google.com/document/d/11xZbyt4hDQ9EWp3V4skDMaGHaZdChOBW0PeOobxfTLQ/edit?usp=sharing",
-      color: "bg-green-100", // Green (Personal)
+      color: "bg-green-100",
       tapeColor: "bg-green-400/50"
     },
     {
@@ -348,32 +348,69 @@ export default function PostItBoard() {
       fullDescription: "For the Pressure Cooker Challenge, I had to work under tight deadlines to create a design for a client. This project tested my ability to manage time effectively, prioritize tasks, and deliver high-quality work within a limited timeframe of 1 week. Despite the pressure, I successfully completed the project by staying focused and organized.",
       technologies: ["React", "Illustrator", "Client", "Visual Identity"],
       link: "/pressure-cooker",
-      color: "bg-yellow-100", // Yellow (School)
+      color: "bg-yellow-100",
       tapeColor: "bg-yellow-400/50"
     },
     {
-      id: 6, title: "AETHOL Brand & Platform",
+      id: 6,
+      title: "AETHOL Brand & Platform",
       category: "Web Development",
-      images: ["https://i.imgur.com/8abgjpQ.jpeg"], // Or use your hosted Hero screenshot
-      description: "A digital agency identity merging Greek mythology with high-end interaction design.",
+      images: ["https://i.imgur.com/8abgjpQ.jpeg"],
+      description: "A digital agency identity merging mythology with high-end interaction.",
       fullDescription: "Aethol serves as my professional creative development studio. The project focuses on the concept of 'Directing the Digital Currents,' using the Greek god Aeolus as a metaphor for the intersection of Software Engineering and Interaction Design. I developed a custom SVG design system and a motion-heavy platform using Next.js and GSAP. The goal was to create a 'low-friction' user experience that feels like a natural breeze, utilizing scroll-triggered animations and glassmorphism to establish a premium, authoritative brand presence in the tech space.",
       technologies: ["Next.js", "GSAP", "SVG Animation", "Vercel", "Tailwind CSS"],
       link: "https://aethol.nl",
-      color: "bg-blue-100", // Blue (Professional)
+      color: "bg-blue-100",
       tapeColor: "bg-blue-400/50"
     },
     {
-      id: 7, 
+      id: 7,
       title: "CMD Resource Hub",
       category: "School Project",
       images: ["https://i.imgur.com/IwZNbYT.png"],
       description: "A centralized, interactive toolkit for CMD students.",
       fullDescription: "I transformed a static HTML resource list into a high-performance React application designed for CMD students. The project involved implementing advanced features such as a real-time fuzzy search engine, category filtering, and a 'Quick Search' platform bar. To enhance the user experience, I integrated local storage persistence for a 'Favorites' system and a custom dark mode toggle. I also implemented keyboard shortcuts (like '/' to search) to cater to power users, creating a seamless, accessible tool that helps students navigate school platforms and design tools efficiently.",
       technologies: ["React", "Local Storage", "UX Design", "CSS Variables", "State Management"],
-      link: "https://designportfolio.vercel.app/resource-hub",
-      color: "bg-yellow-100", // Yellow (School)
+      link: "/resource-hub",
+      color: "bg-yellow-100",
       tapeColor: "bg-yellow-400/50"
     },
+    {
+      id: 8,
+      title: "Social Innovation Lab Branding",
+      category: "School Project",
+      images: ["https://i.imgur.com/yCKgXSU.png", "https://i.imgur.com/eeKNshB.jpeg", "https://i.imgur.com/fwv3xjD.jpeg", "https://i.imgur.com/rM59R9R.png"],
+      description: "Variable visual identity and mascot design.",
+      fullDescription: "A comprehensive branding project focused on developing a variable visual identity and mascot, 'Sil,' for an NHL Stenden community lab. A critical component of this project was directing the design focus toward the lab itself as the primary client, ensuring the visual language effectively serves its community-facing goals.",
+      technologies: ["React", "Figma", "Tailwind CSS", "Brand Strategy"],
+      link: "/sil",
+      color: "bg-orange-100",
+      tapeColor: "bg-orange-400/50"
+    },
+    {
+      id: 9,
+      title: "Team Spectra Hub",
+      category: "Collaborative Project",
+      images: ["https://i.imgur.com/V9RtU0e.png"], 
+      description: "A digital space for collaborative academic challenges.",
+      fullDescription: "A dedicated space highlighting academic projects and design challenges tackled alongside my team colleagues. This highlights cross-functional teamwork, task division, and collaborative problem-solving within a student design collective. The focus was on pushing past our comfort zones and learning new disciplines under tight constraints.",
+      technologies: ["React", "GSAP", "Tailwind CSS", "ScrollTrigger"],
+      link: "/spectra",
+      color: "bg-green-100",
+      tapeColor: "bg-green-400/50"
+    },
+    {
+      id: 10,
+      title: "Test Study Sandbox",
+      category: "Personal Growth",
+      images: ["https://i.imgur.com/2Kiz1Kb.png"], 
+      description: "Experimental UI and component testing environment.",
+      fullDescription: "An experimental environment dedicated to testing new libraries, interactive UI elements, and unorthodox design layouts. This sandbox allows for technical troubleshooting and refinement before integrating complex features into production-ready builds.",
+      technologies: ["React", "Experimental UI", "Testing", "Troubleshooting"],
+      link: "/teststudy",
+      color: "bg-purple-100",
+      tapeColor: "bg-purple-400/50"
+    }
   ];
 
   return (
